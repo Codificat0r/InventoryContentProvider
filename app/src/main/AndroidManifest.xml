@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.inventory.SplashActivity"></activity>
+        <activity android:name="com.example.inventory.InventoryActivity"></activity>
+        <activity android:name="com.example.inventory.DashboardActivity"></activity>
+
     </application>
 
 </manifest>
