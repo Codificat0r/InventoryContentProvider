@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:stretchColumns="1">
+
+    <!-- Con android:stretchColumns hacemos que las columnas ocupen todo el espacio disponible -->
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/txvName"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="@string/txvName"
+            android:labelFor="@+id/edtName"/>
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/txvDescription"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="@string/txvDescription"
+            android:labelFor="@+id/edtDescription"/>
+
+        <EditText
+            android:id="@+id/edtDescription"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/txvCreationDate"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="@string/txvCreationDate"
+            android:labelFor="@+id/edtCreationDate"/>
+
+        <EditText
+            android:id="@+id/edtCreationDate"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:inputType="date"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_span="2"
+            android:gravity="center">
+
+        <Button
+            android:id="@+id/btnChange"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/btnChange" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+</TableLayout>

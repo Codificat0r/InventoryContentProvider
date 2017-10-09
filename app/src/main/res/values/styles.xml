@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginTheme" parent="AppTheme">
+        <item name="android:textColor">@color/colorPrimaryLogin</item>
+    </style>
+
+
+    <!-- Lo hemos copiado de Styles.xml de lo que nos falta, y definimos la jerarquía. COn los puntos definimos
+    la jerarquia en el ultimo estilo, en los demas con el parent para que cojan las cosas de android. En el ultimo
+    estilo en el name añadimos android: y en el contenido del elemento xml item, tambien definimos @android: y
+    ?android:. Lo que hacemos basicamente es, mi estilo de Widget y de Widget.Button, es el que coja del sistema.-->
+    <style name="Widget" parent="@android:style/Widget"/>
+    <style name="Widget.Button" parent="@android:style/Widget.Button"/>
+    <style name="Widget.Button.Transparent">
+        <item name="android:background">@null</item>
+        <!-- La interrogacion hace que coja el "contenido de.." ese atributo.-->
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textColor">@android:color/white</item>
+        <!-- Hay peligro al hacer esto por lo de medir, dimensionar y dibujar, pero ahora mismo no hay problema
+        lo ha aplicado lourdes, por algun motivo no hay problema-->
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="LoginEditText">
+        <item name="android:padding">10dp</item>
+    </style>
+
+</resources>
