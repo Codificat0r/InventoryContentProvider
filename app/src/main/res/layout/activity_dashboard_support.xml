@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    app:columnCount="3"
+    app:orientation="horizontal"
+    android:id="@+id/grdDashboard">
+
+    <!-- Tambien como 3º forma, vamos a añadir los elementos desde codigo en el DashboardActivity-->
+
+    <!-- Lo haremos ahora con la libreria de soporte del GridLayout. Le asignaremos peso a cada elemento, tres columnas
+    en horizontal y el gravity del layout, le diremos que lo rellene para que todos los elementos ocupasen todo el espacio.-->
+
+    <!--<ImageView
+        android:id="@+id/imgWhiteboard"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_whiteboard" />
+
+    <ImageView
+        android:id="@+id/imgTable"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_table" />
+
+    <ImageView
+        android:id="@+id/imgProyector"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_proyector" />
+
+    <ImageView
+        android:id="@+id/imgPrinter"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_printer" />
+
+    <ImageView
+        android:id="@+id/imgMouse"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_mouse" />
+
+    <ImageView
+        android:id="@+id/imgMonitor"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_monitor" />
+
+    <ImageView
+        android:id="@+id/imgKeyboard"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_keyboard" />
+
+    <ImageView
+        android:id="@+id/imgInventory"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_inventory" />
+
+    <ImageView
+        android:id="@+id/imgCpu"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_cpu" />
+
+    <ImageView
+        android:id="@+id/imgCLoset"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_closet" />
+
+    <ImageView
+        android:id="@+id/imgChair"
+        android:layout_width="@dimen/imgDashboardWidthSupport"
+        android:layout_height="@dimen/imgDashboardHeightSupport"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        app:layout_gravity="fill"
+        app:srcCompat="@drawable/ic_chair" />-->
+
+</android.support.v7.widget.GridLayout>

@@ -6,4 +6,8 @@
     <dimen name="lly_sign_options">8dp</dimen>
     <dimen name="edtUser">15dp</dimen>
     <dimen name="btnGoogleSign">15dp</dimen>
+    <dimen name="imgDashboardWidth">90dp</dimen>
+    <dimen name="imgDashboardHeight">100dp</dimen>
+    <dimen name="imgDashboardWidthSupport">0dp</dimen>
+    <dimen name="imgDashboardHeightSupport">0dp</dimen>
 </resources>
