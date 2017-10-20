@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.inventory.LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/LoginTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,10 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.inventory.SplashActivity"></activity>
-        <activity android:name="com.example.inventory.InventoryActivity"></activity>
-        <activity android:name="com.example.inventory.DashboardActivity"></activity>
-
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".InventoryActivity" />
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".ProductActivity"></activity>
     </application>
 
 </manifest>

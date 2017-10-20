@@ -9,7 +9,7 @@
      filas. Hay que añadir orientation y un rowCount o columnCount, dependiendo de nuestro caso. Con columnCount debe ser
      orientation horizontal y para rowCount vertical.-->
 
-    <Space
+    <!--<Space
         android:layout_width="20dp"
         android:layout_height="20dp"/>
 
@@ -121,5 +121,5 @@
 
     <Space
         android:layout_width="20dp"
-        android:layout_height="20dp"/>
+        android:layout_height="20dp"/> -->
 </GridLayout>
