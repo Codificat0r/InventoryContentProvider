@@ -12,7 +12,8 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 /**
- * Created by usuario on 9/10/17.
+ * Esta clase se encarga de realizar el menú principal.
+ * @author Carlos Cruz Domínguez
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -93,6 +94,10 @@ public class DashboardActivity extends AppCompatActivity {
                     break;
                 case R.drawable.ic_product:
                     intent = new Intent(DashboardActivity.this, ProductActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.drawable.ic_dependency:
+                    intent = new Intent(DashboardActivity.this, DependencyActivity.class);
                     startActivity(intent);
                     break;
             }
