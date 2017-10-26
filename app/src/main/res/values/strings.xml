@@ -12,4 +12,16 @@
     <string name="txvDescription">Descripcion</string>
     <string name="btnChange">Cambiar estado</string>
     <string name="txvCreationDate">Fecha de creación</string>
+    <string name="txvNombre">Nombre:</string>
+    <string name="txvSerial">Serial:</string>
+    <string name="txvVendedor">Vendedor:</string>
+    <string name="txvModelo">Modelo:</string>
+    <string name="txvCategoria">Categoria:</string>
+    <string name="txvSubcategoria">Subcategoria:</string>
+    <string name="txvTipo">Tipo:</string>
+    <string name="txvDescripcion">Descripcion:</string>
+    <string name="txvPrecio">Precio:</string>
+    <string name="txvFechaCompra">F.Compra:</string>
+    <string name="txvUrl">Url:</string>
+    <string name="txvNotas">Notas:</string>
 </resources>

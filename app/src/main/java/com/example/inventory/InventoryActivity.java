@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by usuario on 9/10/17.
+ * Esta clase carga el interfaz de la activity de Inventory
+ * @author Carlos Cruz Domínguez
  */
 
 public class InventoryActivity extends AppCompatActivity {

@@ -4,7 +4,10 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
+
+import com.example.inventory.adapter.DependencyAdapter;
 import com.example.inventory.pojo.Dependency;
+import com.example.inventory.repository.DependencyRepository;
 
 /**
  * Esta clase se encarga de proporcionar una lista de las dependencias.
@@ -14,16 +17,22 @@ import com.example.inventory.pojo.Dependency;
 //Cuando decimos que es un listactivity tiene un objeto listview interno.
 public class DependencyActivity extends ListActivity{
 
-    private ArrayAdapter<Dependency> dependencies;
+    //El CASO 1 usa un Adapter no personalizado.
+    //private ArrayAdapter<Dependency> dependencies;
+    //El CASO 2 usa un Adapter personalizado.
+    private DependencyAdapter dependencies;
+
 
     @Override
     protected void onCreate (@Nullable Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_dependency);
 
-
+        //CASO 1
         //Este ArrayAdapter es el que va a contener los datos que va a acargar el ListView.
-        dependencies = new ArrayAdapter<Dependency>(this, android.R.layout.simple_list_item_1, ((InventoryApplication)getApplicationContext()).getDependencies());
+        //dependencies = new ArrayAdapter<Dependency>(this, android.R.layout.simple_list_item_1, DependencyRepository.getInstance().getDependencies());
+        //CASO 2
+        dependencies = new DependencyAdapter(this);
         //Encuentra el ListView del layout debido a que le hemos puesto el ID obligatorio. Le añadimos el ADAPTER
         //al que irá a buscar los datos.
         getListView().setAdapter(dependencies);

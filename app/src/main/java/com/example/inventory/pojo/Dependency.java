@@ -1,7 +1,8 @@
 package com.example.inventory.pojo;
 
 /**
- * Created by usuario on 25/10/17.
+ * Esta clase pojo servirá para contener datos de una dependencia
+ * @author Carlos Cruz Domínguez
  */
 
 public class Dependency {
@@ -51,11 +52,6 @@ public class Dependency {
 
     @Override
     public String toString() {
-        return "Dependency{" +
-                "_ID=" + _ID +
-                ", name='" + name + '\'' +
-                ", shortname='" + shortname + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return shortname;
     }
 }

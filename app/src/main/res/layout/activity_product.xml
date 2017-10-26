@@ -1,49 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imgProduct"
-        android:layout_width="215dp"
-        android:layout_height="169dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_pc" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgProduct">
-
-        <android.support.constraint.ConstraintLayout
+        <ImageView
+            android:id="@+id/imgProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp">
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_pc" />
+
+
 
             <TextView
                 android:id="@+id/txvNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Nombre:"
+                android:text="@string/txvNombre"
                 app:layout_constraintStart_toStartOf="@+id/gulTxv"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/imgProduct" />
 
             <EditText
                 android:id="@+id/edtNombre"
@@ -63,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Serial:"
+                android:text="@string/txvSerial"
                 app:layout_constraintStart_toStartOf="@+id/txvNombre"
                 app:layout_constraintTop_toBottomOf="@+id/txvNombre" />
 
@@ -91,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Vendedor:"
+                android:text="@string/txvVendedor"
                 app:layout_constraintStart_toStartOf="@+id/txvSerial"
                 app:layout_constraintTop_toBottomOf="@+id/txvSerial" />
 
@@ -110,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Modelo:"
+                android:text="@string/txvModelo"
                 app:layout_constraintStart_toStartOf="@+id/txvVendedor"
                 app:layout_constraintTop_toBottomOf="@+id/txvVendedor" />
 
@@ -129,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Categoria:"
+                android:text="@string/txvCategoria"
                 app:layout_constraintStart_toStartOf="@+id/txvModelo"
                 app:layout_constraintTop_toBottomOf="@+id/txvModelo" />
 
@@ -146,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Subcategoria:"
+                android:text="@string/txvSubcategoria"
                 app:layout_constraintStart_toStartOf="@+id/txvCategoria"
                 app:layout_constraintTop_toBottomOf="@+id/txvCategoria" />
 
@@ -163,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Tipo:"
+                android:text="@string/txvTipo"
                 app:layout_constraintStart_toStartOf="@+id/txvSubcategoria"
                 app:layout_constraintTop_toBottomOf="@+id/txvSubcategoria" />
 
@@ -180,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Descripcion:"
+                android:text="@string/txvDescripcion"
                 app:layout_constraintStart_toStartOf="@+id/txvTipo"
                 app:layout_constraintTop_toBottomOf="@+id/txvTipo" />
 
@@ -199,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Precio:"
+                android:text="@string/txvPrecio"
                 app:layout_constraintStart_toStartOf="@+id/txvDescripcion"
                 app:layout_constraintTop_toBottomOf="@+id/edtDescripcion" />
 
@@ -218,7 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="F.Compra:"
+                android:text="@string/txvFechaCompra"
                 app:layout_constraintStart_toStartOf="@+id/txvPrecio"
                 app:layout_constraintTop_toBottomOf="@+id/edtPrecio" />
 
@@ -237,7 +226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Url:"
+                android:text="@string/txvUrl"
                 app:layout_constraintStart_toStartOf="@+id/txvFechaCompra"
                 app:layout_constraintTop_toBottomOf="@+id/txvFechaCompra" />
 
@@ -256,7 +245,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Notas:"
+                android:text="@string/txvNotas"
                 app:layout_constraintStart_toStartOf="@+id/txvUrl"
                 app:layout_constraintTop_toBottomOf="@+id/txvUrl" />
 
@@ -275,14 +264,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="20dp"/>
+                app:layout_constraintGuide_begin="20dp" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/gulEdt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="180dp"/>
+                app:layout_constraintGuide_begin="180dp" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
-</android.support.constraint.ConstraintLayout>
