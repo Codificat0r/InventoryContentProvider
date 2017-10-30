@@ -1,7 +1,8 @@
 package com.example.inventory.repository;
 
 /**
- * Created by usuario on 26/10/17.
+ * Clase que almacenará diferentes productos.
+ * @author Carlos Cruz Domínguez
  */
 
 public class ProductRepository {

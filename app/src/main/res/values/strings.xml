@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LoginLinearLayout</string>
+    <string name="app_name">Inventory</string>
     <string name="txvSignIn">Acceder</string>
     <string name="txvUser">Nombre usuario/Email</string>
     <string name="txvPassword">Contraseña</string>
@@ -24,4 +24,5 @@
     <string name="txvFechaCompra">F.Compra:</string>
     <string name="txvUrl">Url:</string>
     <string name="txvNotas">Notas:</string>
+    <string name="menu_save">Save</string>
 </resources>

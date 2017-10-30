@@ -100,6 +100,10 @@ public class DashboardActivity extends AppCompatActivity {
                     intent = new Intent(DashboardActivity.this, DependencyActivity.class);
                     startActivity(intent);
                     break;
+                case R.drawable.ic_section:
+                    intent = new Intent(DashboardActivity.this, SectorActivity.class);
+                    startActivity(intent);
+                    break;
             }
         }
     }

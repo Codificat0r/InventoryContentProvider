@@ -5,7 +5,8 @@ import com.example.inventory.pojo.Dependency;
 import java.util.ArrayList;
 
 /**
- * Created by usuario on 26/10/17.
+ * Clase que almacenará diferentes dependencias.
+ * @author Carlos Cruz Domínguez
  */
 
 public class DependencyRepository {
