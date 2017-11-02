@@ -48,7 +48,7 @@ public class SectorActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Almaceno los sectores que se han modificado en la vista y no hgan sido guardados para visualizar
+    //Almaceno los sectores que se han modificado en la vista y no han sido guardados para visualizar
     //el estado correcto en OnCreate()
     @Override
     protected void onSaveInstanceState(Bundle outState) {

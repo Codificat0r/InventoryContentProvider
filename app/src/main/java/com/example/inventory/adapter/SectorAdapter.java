@@ -90,9 +90,10 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     }
 
     //En el onBindViewHolder enganchamos los switch a este listener, para que cuando cambien, guardemos
-    //su estado.
+    //su estado, por si se gira la pantalla que se destruye y se crea la activity.
+    //https://stackoverflow.com/questions/19587141/saving-and-restoring-instance-state-in-dynamically-created-ui
+    //https://developer.android.com/training/basics/activity-lifecycle/recreating.html?hl=es-419
     class OnSwitchCheckedChangeListener implements CompoundButton.OnCheckedChangeListener {
-
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 

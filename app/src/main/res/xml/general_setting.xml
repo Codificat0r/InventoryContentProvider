@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_category_general">
+
+        <!-- Todo valor de las preferencias se guardan con valor y key, es decir, se guardan como mapa.-->
+        <!-- En lugar de summary podemos usar summaryOn y summaryOff para que cambie el texto descriptivo dependiendo
+        del estado del switch.-->
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="showimage"
+            android:summary="@string/pref_description_showimage"
+            android:title="@string/pref_title_showimage" />
+        <!-- Este es para cuando solo puedo seleccionar un elemento, multilist para cuando puedo seleccionar mas de uno.-->
+        <ListPreference android:key="numcolumn"
+            android:summary="@string/pref_summary_numcolumn"
+            android:title="@string/pref_title_numcolumn"
+            android:entries="@array/pref_entries_numcolumn"
+            android:entryValues="@array/pref_entriesvalues_numcolumn"
+            android:defaultValue="1">
+            <!-- Especificamos los valores de la lista. Tienen dos arrays, uno para los titulos y otro que coincidira con
+            la posicion del primero para establecer el value, es decir, el valor de la opcion elegida de la lista.-->
+
+        </ListPreference>
+    </PreferenceCategory>
+    <Preference
+        android:key="aboutus"
+        android:title="@string/pref_title_aboutus">
+        <!-- Le decimos quer clase quiero que se visualice y el paquete objetivo que contiene la clase.-->
+        <intent android:targetClass="com.example.inventory.AboutActivity"
+            android:targetPackage="com.example.inventory"/>
+    </Preference>
+</PreferenceScreen>

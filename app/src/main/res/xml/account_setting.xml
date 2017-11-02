@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="rememberUser"
+        android:title="@string/pref_remember_user_title"
+        android:summaryOn="@string/pref_remember_user_on_summary"
+        android:summaryOff="@string/pref_remember_user_off_summary"/>
+
+    <EditTextPreference
+        android:title="@string/pref_user_title"
+        android:summary="@string/pref_user_summary"
+        android:key="usuario"/>
+
+    <EditTextPreference
+        android:title="@string/pref_password_title"
+        android:summary="@string/pref_password_summary"
+        android:key="password"
+        android:inputType="textPassword"/>
+</PreferenceScreen>

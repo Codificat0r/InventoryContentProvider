@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Todo lo que sea una accion del menu por nomenclatura lo llamaremos action_... -->
+    <item android:title="@string/action_account_settings"
+        app:showAsAction="never"
+        android:id="@+id/action_account_settings"/>
+    <item android:title="@string/action_general_settings"
+        app:showAsAction="never"
+        android:id="@+id/action_general_settings"/>
+</menu>

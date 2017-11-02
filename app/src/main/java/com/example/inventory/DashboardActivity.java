@@ -1,10 +1,14 @@
 package com.example.inventory;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -17,6 +21,25 @@ import java.util.ArrayList;
  */
 
 public class DashboardActivity extends AppCompatActivity {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_activity_dashboard, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_account_settings:
+                startActivity(new Intent(DashboardActivity.this, AccountSettingActivity.class));
+                break;
+            case R.id.action_general_settings:
+                startActivity(new Intent(DashboardActivity.this, GeneralSettingActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     //Vamos a meter las imagenes desde codigo.
     private GridLayout grdDashboard;

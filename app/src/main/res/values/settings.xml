@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Aqui almacenamos las cadenas de las preferencias ya que las pantallas de las preferencias generan muchos string.-->
+<resources>
+    <string name="pref_category_general">Preferencias generales</string>
+    <string name="pref_description_showimage">Mostrar las imágenes en los listados de la aplicacion</string>
+    <string name="pref_title_showimage">Mostrar imagen</string>
+    <string name="pref_summary_numcolumn">Número de columnas que se mostraran en los listados RecyclerView</string>
+    <string name="pref_title_numcolumn">Numero de columnas</string>
+    <!-- Definimos los arrays para la lista. Deben ser del mismo tamaño -->
+    <string-array name="pref_entries_numcolumn">
+        <item>1 columna</item>
+        <item>2 columna</item>
+        <item>3 columna</item>
+        <item>4 columna</item>
+    </string-array>
+    <string-array name="pref_entriesvalues_numcolumn">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string name="pref_title_aboutus">Sobre nosotros</string>
+
+    <!-- Account settings -->
+
+    <string name="pref_remember_user_title">Recordar usuario</string>
+    <string name="pref_remember_user_on_summary">El usuario se recordará la proxima vez que se inicie sesion</string>
+    <string name="pref_remember_user_off_summary">El usuario no se recordará al iniciar sesion</string>
+    <string name="pref_user_title">Usuario</string>
+    <string name="pref_user_summary">Cambiar nombre de usuario</string>
+    <string name="pref_password_title">Contraseña</string>
+    <string name="pref_password_summary">Cambiar contraseña</string>
+
+</resources>
