@@ -27,5 +27,8 @@
     <string name="action_save">Save</string>
     <string name="action_general_settings">Ajustes generales</string>
     <string name="action_account_settings">Ajustes de cuenta</string>
+    <string name="edtName">Escriba el nombre</string>
+    <string name="edtShortname">Escriba el nombre corto</string>
+    <string name="edtDescription">Añada una descripcion</string>
 
 </resources>

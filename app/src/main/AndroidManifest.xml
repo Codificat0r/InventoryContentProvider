@@ -28,6 +28,7 @@
         <activity android:name="com.example.inventorymaterial.AccountSettingActivity" />
         <activity android:name="com.example.inventorymaterial.GeneralSettingActivity" />
         <activity android:name="com.example.inventorymaterial.AboutActivity" />
+        <activity android:name="com.example.inventorymaterial.AddDependencyActivity" />
     </application>
 
 </manifest>
