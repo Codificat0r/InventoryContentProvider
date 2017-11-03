@@ -1,11 +1,6 @@
-package com.example.inventory;
+package com.example.inventorymaterial;
 
 import android.app.Application;
-
-import com.example.inventory.pojo.Dependency;
-import com.example.inventory.repository.DependencyRepository;
-
-import java.util.ArrayList;
 
 /**
  * Esta clase sirve como contenedor de datos para cargar en un ListView.

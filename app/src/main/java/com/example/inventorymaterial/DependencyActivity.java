@@ -1,13 +1,10 @@
-package com.example.inventory;
+package com.example.inventorymaterial;
 
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ArrayAdapter;
 
-import com.example.inventory.adapter.DependencyAdapter;
-import com.example.inventory.pojo.Dependency;
-import com.example.inventory.repository.DependencyRepository;
+import com.example.inventorymaterial.adapter.DependencyAdapter;
 
 /**
  * Esta clase se encarga de proporcionar una lista de las dependencias.

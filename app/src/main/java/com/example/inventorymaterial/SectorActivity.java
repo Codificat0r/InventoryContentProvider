@@ -1,17 +1,14 @@
-package com.example.inventory;
+package com.example.inventorymaterial;
 
-import android.app.Application;
-import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import com.example.inventory.adapter.SectorAdapter;
-import com.example.inventory.pojo.Sector;
+import com.example.inventorymaterial.adapter.SectorAdapter;
+import com.example.inventorymaterial.pojo.Sector;
 
 public class SectorActivity extends AppCompatActivity {
 

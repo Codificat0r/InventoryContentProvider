@@ -1,4 +1,4 @@
-package com.example.inventory;
+package com.example.inventorymaterial;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

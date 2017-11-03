@@ -1,4 +1,4 @@
-package com.example.inventory.adapter;
+package com.example.inventorymaterial.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.inventory.R;
-import com.example.inventory.pojo.Dependency;
-import com.example.inventory.repository.DependencyRepository;
+import com.example.inventorymaterial.R;
+import com.example.inventorymaterial.pojo.Dependency;
+import com.example.inventorymaterial.repository.DependencyRepository;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 //Dentro de un package es el unico sitio donde hay que hacer un import de R.
@@ -21,9 +21,9 @@ import com.github.ivbaranov.mli.MaterialLetterIcon;
  * del ListView, es decir, cada dependencia.
  */
 
-public class DependencyAdapter extends ArrayAdapter<Dependency>{
+public class DependencyAdapterB extends ArrayAdapter<Dependency>{
 
-    public DependencyAdapter(@NonNull Context context) {
+    public DependencyAdapterB(@NonNull Context context) {
         super(context, R.layout.item_dependency, DependencyRepository.getInstance().getDependencies());
     }
 
@@ -35,8 +35,6 @@ public class DependencyAdapter extends ArrayAdapter<Dependency>{
         TextView txvName;
         TextView txvShortname;
 
-        DependencyHolder dependencyHolder;
-
         //Lo inicializamos con el objeto que desapareció de pantalla
         View view = convertView;
 
@@ -47,33 +45,21 @@ public class DependencyAdapter extends ArrayAdapter<Dependency>{
 
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            dependencyHolder = new DependencyHolder();
-
             view = inflater.inflate(R.layout.item_dependency, null);
 
-            dependencyHolder.icon = (MaterialLetterIcon) view.findViewById(R.id.icon);
-            dependencyHolder.txvName = (TextView) view.findViewById(R.id.txvName);
-            dependencyHolder.txvShortname = (TextView) view.findViewById(R.id.txvShortname);
-
-            view.setTag(dependencyHolder);
-
-        } else {
-            dependencyHolder = (DependencyHolder) view.getTag();
         }
 
+
+        //Inicializar las variables a los objetos ya creados de los widget del xml. ¡¡Cuidado View.findViewId!!
+        icon = (MaterialLetterIcon)view.findViewById(R.id.icon);
+        txvName = (TextView)view.findViewById(R.id.txvName);
+        txvShortname = (TextView)view.findViewById(R.id.txvShortname);
+
         //Mostrar los datos del arraylist mediante position
-        dependencyHolder.icon.setLetter(getItem(position).getShortname().substring(0,1));
-        dependencyHolder.txvName.setText(getItem(position).getName());
-        dependencyHolder.txvShortname.setText(getItem(position).getShortname());
+        icon.setLetter(getItem(position).getShortname().substring(0,1));
+        txvName.setText(getItem(position).getName());
+        txvShortname.setText(getItem(position).getShortname());
 
         return view;
-    }
-
-    class DependencyHolder {
-
-        MaterialLetterIcon icon;
-        TextView txvName;
-        TextView txvShortname;
-
     }
 }

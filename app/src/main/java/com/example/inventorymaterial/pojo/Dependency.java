@@ -1,4 +1,4 @@
-package com.example.inventory.pojo;
+package com.example.inventorymaterial.pojo;
 
 /**
  * Esta clase pojo servirá para contener datos de una dependencia

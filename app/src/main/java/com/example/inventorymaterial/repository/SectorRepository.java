@@ -1,6 +1,6 @@
-package com.example.inventory.repository;
+package com.example.inventorymaterial.repository;
 
-import com.example.inventory.pojo.Sector;
+import com.example.inventorymaterial.pojo.Sector;
 
 import java.util.ArrayList;
 
@@ -27,6 +27,15 @@ public class SectorRepository {
         addSector(new Sector(1, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
         addSector(new Sector(2, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
         addSector(new Sector(3, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
+        addSector(new Sector(4, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
+        addSector(new Sector(5, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
+        addSector(new Sector(6, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
+        addSector(new Sector(7, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
+        addSector(new Sector(8, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
+        addSector(new Sector(9, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
+        addSector(new Sector(10, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
+        addSector(new Sector(11, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
+        addSector(new Sector(12, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
     }
 
     public void addSector (Sector sector) {

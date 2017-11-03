@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.inventory">
+    package="com.example.inventorymaterial">
 
     <application
-        android:name=".InventoryApplication"
+        android:name="com.example.inventorymaterial.InventoryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.inventorymaterial.LoginActivity"
             android:theme="@style/LoginTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".InventoryActivity" />
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".ProductActivity" />
-        <activity android:name=".DependencyActivity" />
-        <activity android:name=".SectorActivity"></activity>
-        <activity android:name=".AccountSettingActivity" />
-        <activity android:name=".GeneralSettingActivity" />
-        <activity android:name=".AboutActivity" />
+        <activity android:name="com.example.inventorymaterial.SplashActivity" />
+        <activity android:name="com.example.inventorymaterial.InventoryActivity" />
+        <activity android:name="com.example.inventorymaterial.DashboardActivity" />
+        <activity android:name="com.example.inventorymaterial.ProductActivity" />
+        <activity android:name="com.example.inventorymaterial.DependencyActivity" />
+        <activity android:name="com.example.inventorymaterial.SectorActivity"></activity>
+        <activity android:name="com.example.inventorymaterial.AccountSettingActivity" />
+        <activity android:name="com.example.inventorymaterial.GeneralSettingActivity" />
+        <activity android:name="com.example.inventorymaterial.AboutActivity" />
     </application>
 
 </manifest>

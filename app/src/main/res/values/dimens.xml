@@ -16,4 +16,6 @@
     <dimen name="list_primary_text">16sp</dimen>
     <dimen name="list_secondary_text">14sp</dimen>
     <dimen name="toggleButton_material_left_padding">16dp</dimen>
+    <dimen name="floatingButton_material_right_margin">16dp</dimen>
+    <dimen name="floatingButton_material_bottom_margin">16dp</dimen>
 </resources>

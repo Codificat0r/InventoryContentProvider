@@ -1,7 +1,5 @@
-package com.example.inventory;
+package com.example.inventorymaterial;
 
-import android.accounts.Account;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import java.io.FileOutputStream;
-import java.util.ArrayList;
 
 /**
  * Esta clase se encarga de realizar el menú principal.

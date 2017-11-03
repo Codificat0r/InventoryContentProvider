@@ -1,4 +1,4 @@
-package com.example.inventory;
+package com.example.inventorymaterial;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
