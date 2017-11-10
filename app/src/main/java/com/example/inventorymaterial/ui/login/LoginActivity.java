@@ -1,10 +1,13 @@
-package com.example.inventorymaterial;
+package com.example.inventorymaterial.ui.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.inventorymaterial.DashboardActivity;
+import com.example.inventorymaterial.R;
 
 /**
  * Esta clase da soporte de código a la activity del login

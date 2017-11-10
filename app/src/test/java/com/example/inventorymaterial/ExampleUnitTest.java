@@ -1,7 +1,7 @@
 package com.example.inventorymaterial;
 
-import com.example.inventorymaterial.pojo.User;
-import com.example.inventorymaterial.repository.UserRepository;
+import com.example.inventorymaterial.data.db.model.User;
+import com.example.inventorymaterial.data.db.repository.UserRepository;
 
 import org.junit.Before;
 import org.junit.Test;

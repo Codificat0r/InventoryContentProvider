@@ -3,7 +3,7 @@
     package="com.example.inventorymaterial">
 
     <application
-        android:name="com.example.inventorymaterial.InventoryApplication"
+        android:name="com.example.inventorymaterial.ui.inventory.InventoryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.inventorymaterial.LoginActivity"
+            android:name="com.example.inventorymaterial.ui.login.LoginActivity"
             android:theme="@style/LoginTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,15 +20,15 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.inventorymaterial.SplashActivity" />
-        <activity android:name="com.example.inventorymaterial.InventoryActivity" />
+        <activity android:name="com.example.inventorymaterial.ui.inventory.InventoryActivity" />
         <activity android:name="com.example.inventorymaterial.DashboardActivity" />
-        <activity android:name="com.example.inventorymaterial.ProductActivity" />
-        <activity android:name="com.example.inventorymaterial.DependencyActivity" />
-        <activity android:name="com.example.inventorymaterial.SectorActivity"></activity>
-        <activity android:name="com.example.inventorymaterial.AccountSettingActivity" />
-        <activity android:name="com.example.inventorymaterial.GeneralSettingActivity" />
-        <activity android:name="com.example.inventorymaterial.AboutActivity" />
-        <activity android:name="com.example.inventorymaterial.AddDependencyActivity" />
+        <activity android:name="com.example.inventorymaterial.ui.product.ProductActivity" />
+        <activity android:name="com.example.inventorymaterial.ui.dependency.DependencyActivity" />
+        <activity android:name="com.example.inventorymaterial.ui.sector.SectorActivity"></activity>
+        <activity android:name="com.example.inventorymaterial.ui.prefs.AccountSettingActivity" />
+        <activity android:name="com.example.inventorymaterial.ui.prefs.GeneralSettingActivity" />
+        <activity android:name="com.example.inventorymaterial.ui.about.AboutActivity" />
+        <activity android:name="com.example.inventorymaterial.ui.dependency.AddDependencyActivity" />
     </application>
 
 </manifest>

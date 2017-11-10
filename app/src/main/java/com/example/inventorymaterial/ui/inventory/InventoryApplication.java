@@ -1,4 +1,4 @@
-package com.example.inventorymaterial;
+package com.example.inventorymaterial.ui.inventory;
 
 import android.app.Application;
 

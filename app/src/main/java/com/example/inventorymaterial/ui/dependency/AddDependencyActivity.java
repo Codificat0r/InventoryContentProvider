@@ -1,4 +1,4 @@
-package com.example.inventorymaterial;
+package com.example.inventorymaterial.ui.dependency;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.example.inventorymaterial.R;
 
 /**
  * Created by usuario on 3/11/17.

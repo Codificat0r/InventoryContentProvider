@@ -10,6 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.inventorymaterial.ui.dependency.DependencyActivity;
+import com.example.inventorymaterial.ui.inventory.InventoryActivity;
+import com.example.inventorymaterial.ui.prefs.AccountSettingActivity;
+import com.example.inventorymaterial.ui.prefs.GeneralSettingActivity;
+import com.example.inventorymaterial.ui.product.ProductActivity;
+import com.example.inventorymaterial.ui.sector.SectorActivity;
+
 /**
  * Esta clase se encarga de realizar el menú principal.
  * @author Carlos Cruz Domínguez

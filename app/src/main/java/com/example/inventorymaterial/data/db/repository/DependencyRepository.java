@@ -1,6 +1,6 @@
-package com.example.inventorymaterial.repository;
+package com.example.inventorymaterial.data.db.repository;
 
-import com.example.inventorymaterial.pojo.Dependency;
+import com.example.inventorymaterial.data.db.model.Dependency;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,6 @@
-package com.example.inventorymaterial.repository;
+package com.example.inventorymaterial.data.db.repository;
 
-import com.example.inventorymaterial.pojo.Sector;
-import com.example.inventorymaterial.pojo.User;
+import com.example.inventorymaterial.data.db.model.User;
 
 import java.util.ArrayList;
 

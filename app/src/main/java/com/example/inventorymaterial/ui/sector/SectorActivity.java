@@ -1,4 +1,4 @@
-package com.example.inventorymaterial;
+package com.example.inventorymaterial.ui.sector;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import com.example.inventorymaterial.R;
 import com.example.inventorymaterial.adapter.SectorAdapter;
-import com.example.inventorymaterial.pojo.Sector;
+import com.example.inventorymaterial.data.db.model.Sector;
 
 public class SectorActivity extends AppCompatActivity {
 
