@@ -13,8 +13,9 @@ import com.example.inventorymaterial.R;
  * Esta clase da soporte de código a la activity del login
  * @author Carlos Cruz Domínguez
  */
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginViewImpl extends AppCompatActivity implements View.OnClickListener{
 
+    LoginPresenter loginPresenter;
     private Button btnSignIn;
 
     @Override
@@ -29,8 +30,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == btnSignIn) {
-            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-            startActivity(intent);
+            loginPresenter.validateCredentials("paco", "123456");
+            /*Intent intent = new Intent(LoginViewImpl.this, DashboardActivity.class);
+            strtActivity(intent);*/
         }
     }
 }
