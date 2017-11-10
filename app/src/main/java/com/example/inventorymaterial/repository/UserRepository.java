@@ -25,9 +25,9 @@ public class UserRepository {
     }
 
     public void initialize() {
-        saveUser(new User(1, "Paco", "1234", "Paco", "paco1@gmail.com", true, true));
-        saveUser(new User(1, "Pepe", "1234", "Pepe", "pepe121311@gmail.com", false, false));
-        saveUser(new User(1, "Maria", "1234", "Maria", "maria1@gmail.com", false, false));
+        saveUser(new User(1, "paco", "123456", "Paco", "paco1@gmail.com", true, true));
+        saveUser(new User(1, "pepe", "123456", "Pepe", "pepe121311@gmail.com", false, false));
+        saveUser(new User(1, "maria", "123456", "Maria", "maria1@gmail.com", false, false));
     }
 
     public void saveUser (User user) {
@@ -43,6 +43,13 @@ public class UserRepository {
 
     public ArrayList<User> getUsers() {
         return users;
+    }
+
+    /**
+     * Metodo que comprueba si el usuario está existe en la base de datos
+     */
+    public boolean isUserExists(User user) {
+        return true;
     }
 
 }
