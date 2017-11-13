@@ -20,7 +20,8 @@ import com.example.inventorymaterial.ui.base.BaseActivity;
 //Heredarán de BaseActivity porque las actividades tienen cosas en comun.
 public class LoginViewImpl extends BaseActivity implements View.OnClickListener, LoginView{
 
-    LoginPresenterImpl loginPresenter;
+    //Siempre declaramos la interfaz como tipo, y despues la inicializamos con la implementacion.
+    LoginPresenter loginPresenter;
     private Button btnSignIn;
     private EditText edtUser;
     private EditText edtPassword;
@@ -30,6 +31,7 @@ public class LoginViewImpl extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Lo inicializamos con la implementacion de la interfaz.
         loginPresenter = new LoginPresenterImpl(this);
 
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
