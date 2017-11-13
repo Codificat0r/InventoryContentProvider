@@ -52,7 +52,8 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_support);
 
-        grdDashboard = (GridLayout) findViewById(R.id.grdDashboard);
+        //Sabe que nos referimos al de la activity actual.
+        grdDashboard = (GridLayout) findViewById(android.R.id.content);
 
         //Definir un array de int, que contendra el id de las imagenes Inventory, Product, Dependencias, Secciones,
         //Preferencias.

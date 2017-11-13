@@ -3,5 +3,5 @@
     <string name="userEmptyError">Debe introducir un usuario</string>
     <string name="passwordEmptyError">Debe introducir una contraseña</string>
     <string name="emailEmptyError">Debe introducir un email</string>
-    <string name="passwordLengthError">Longitud incorrecta de la contraseña</string>
+    <string name="passwordLengthError">Contraseña formada incorrectamente</string>
 </resources>

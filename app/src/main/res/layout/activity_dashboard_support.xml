@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     app:columnCount="3"
     app:orientation="horizontal"
-    android:id="@+id/grdDashboard">
+    android:id="@+id/android.R.id.content">
 
     <!-- Tambien como 3º forma, vamos a añadir los elementos desde codigo en el DashboardActivity-->
 

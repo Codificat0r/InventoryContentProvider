@@ -24,6 +24,12 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     }
 
     @Override
+    public void onDestroy() {
+        loginView = null;
+        loginInteractor = null;
+    }
+
+    @Override
     public void onUserEmptyError() {
         loginView.setUserEmptyError();
     }

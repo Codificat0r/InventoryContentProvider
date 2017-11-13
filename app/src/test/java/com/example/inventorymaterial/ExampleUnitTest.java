@@ -2,6 +2,7 @@ package com.example.inventorymaterial;
 
 import com.example.inventorymaterial.data.db.model.User;
 import com.example.inventorymaterial.data.db.repository.UserRepository;
+import com.example.inventorymaterial.ui.utils.CommonUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -62,8 +63,31 @@ public class ExampleUnitTest {
 
     @Test
     public void password_isCorrect() {
-        when(userRepository.getUsers()).thenReturn(users);
-        assertEquals("1234", userRepository.getUsers().get(0).getPassword());
+        boolean resultado;
+        //Contraseña correcta
+        resultado = CommonUtils.isPasswordValid("Aabc1a");
+        assertTrue(resultado);
+        //No hay mayusculas
+        resultado = CommonUtils.isPasswordValid("abc123");
+        assertFalse(resultado);
+        //No hay numeros
+        resultado = CommonUtils.isPasswordValid("Abcdef");
+        assertFalse(resultado);
+        //No hay minusculas
+        resultado = CommonUtils.isPasswordValid("A123BC");
+        assertFalse(resultado);
+        //No hay mayusculas ni numeros
+        resultado = CommonUtils.isPasswordValid("abcdef");
+        assertFalse(resultado);
+        //No hay mayusculas ni minusculas
+        resultado = CommonUtils.isPasswordValid("123456");
+        assertFalse(resultado);
+        //No hay minusculas ni numeros
+        resultado = CommonUtils.isPasswordValid("ABCDEF");
+        assertFalse(resultado);
+        //Menos de seis digitos
+        resultado = CommonUtils.isPasswordValid("Ab123");
+        assertFalse(resultado);
     }
 
     @Test

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:columnCount="6"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/android.R.id.content">
 
     <!-- Si ponemos rowCount y columnCount solo hace caso a uno de los elementos count. Prevalece uno de ellos, el de las
      filas. Hay que añadir orientation y un rowCount o columnCount, dependiendo de nuestro caso. Con columnCount debe ser
