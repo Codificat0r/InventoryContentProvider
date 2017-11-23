@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.inventorymaterial.ui.sector.SectorActivity"
+    tools:context="com.example.inventoryfragment.ui.sector.SectorActivity"
     android:id="@+id/android.R.id.content">
 
     <android.support.design.widget.AppBarLayout
