@@ -1,15 +1,39 @@
 package com.example.inventoryfragment.ui.dependency.contract;
 
+import com.example.inventoryfragment.ui.base.BasePresenter;
+import com.example.inventoryfragment.ui.base.BaseView;
+
 /**
  * Created by usuario on 23/11/17.
  */
 
 public interface AddEditDependencyContract {
-    interface View {
-        void setPresenter(AddEditDependencyContract.Presenter presenter);
+    interface View extends BaseView{
+        void setNameError();
+        void setShortnameError();
+        void setDescriptionError();
+        void setShortnameLenghtError();
+        void showDependencyList();
+        void showNameEmptyError();
+        void showShortnameEmptyError();
+        void showShortnameLenghtError();
+        void showDescriptionEmptyError();
     }
 
-    interface Presenter {
+    interface Presenter extends BasePresenter{
+        void validateDependency(String name, String shortname, String description);
+    }
 
+    interface Interactor {
+
+        void validateDependency(String name, String shortname, String description, AddEditDependencyContract.Interactor.onEditFinishedListener onEditFinishedListener);
+
+        interface onEditFinishedListener {
+            void onNameError();
+            void onShortnameError();
+            void onDescriptionError();
+            void onShortnameLenghtError();
+            void onSuccess();
+        }
     }
 }

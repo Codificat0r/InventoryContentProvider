@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.DependencyAdapter;
+import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
 
@@ -25,8 +26,9 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     private ListDependencyListener callback;
     private ListDependencyContract.Presenter presenter;
 
-    public void setPresenter(ListDependencyContract.Presenter presenter) {
-        this.presenter = presenter;
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+        this.presenter = (ListDependencyContract.Presenter) presenter;
     }
 
     //Para poder pasarle el re

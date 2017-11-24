@@ -4,4 +4,10 @@
     <string name="passwordEmptyError">Debe introducir una contraseña</string>
     <string name="emailEmptyError">Debe introducir un email</string>
     <string name="passwordLengthError">Contraseña formada incorrectamente</string>
+
+    <string name="nameEmptyError">Debe introducir un nombre para la dependencia</string>
+    <string name="shortnameEmptyError">Debe introducir un nombre corto</string>
+    <string name="descriptionEmptyError">Debe introducir una descripcion</string>
+    <string name="shortnameLenghtError">Debe introducir un nombre corto de longitud válida</string>
+
 </resources>

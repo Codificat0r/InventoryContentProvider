@@ -5,6 +5,9 @@
     android:id="@+id/android.R.id.content">
 
     <!--La activity solo va a ser un contenedor de fragments, es decir, un FrameLayout. Los toolbar
-    estarán en cada fragment porque cambiarán dependiendo del que se muestre. -->
+    estarán en cada fragment porque cambiarán dependiendo del que se muestre. Si fuera a contener
+    cosas comunes como el FloattingActionButton que es comun a los tres fragments pondriamos aqui
+    en lugar del FrameLayout un coordinator layout e iriamos cambiando el floating button segun el
+    fragment mostrado.-->
 
 </FrameLayout>
