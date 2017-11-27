@@ -1,5 +1,6 @@
 package com.example.inventoryfragment.ui.dependency;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.inventoryfragment.R;
+import com.example.inventoryfragment.data.db.model.Dependency;
+import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
 
@@ -31,6 +34,7 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
     private TextInputLayout tilName;
     private TextInputLayout tilShortname;
     private TextInputLayout tilDescription;
+    private FloatingActionButtonFragmenAddEditDependencyListener callback;
 
     //Patron factory
     public static AddEditDependency newInstance(@Nullable Bundle arguments) {
@@ -41,6 +45,19 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
         return addEditDependency;
     }
 
+    interface FloatingActionButtonFragmenAddEditDependencyListener {
+        void returnToList();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            callback = (FloatingActionButtonFragmenAddEditDependencyListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().getLocalClassName() + " must implements FloatingActionButtonFragmenAddEditDependencyListener");
+        }
+    }
 
     @Override
     public void setPresenter(BasePresenter presenter) {
@@ -131,7 +148,8 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
     //Si todo es correcto muestro la lista de dependencias con la nueva añadida
     @Override
     public void showDependencyList() {
-
+        DependencyRepository.getInstance().addDependency(new Dependency(1, edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString()));
+        callback.returnToList();
     }
 
 

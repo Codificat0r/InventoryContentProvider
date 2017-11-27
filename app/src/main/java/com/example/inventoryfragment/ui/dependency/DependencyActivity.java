@@ -18,7 +18,7 @@ import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPrese
  */
 
 //Cuando decimos que es un listactivity tiene un objeto listview interno.
-public class DependencyActivity extends AppCompatActivity implements ListDependency.ListDependencyListener{
+public class DependencyActivity extends AppCompatActivity implements ListDependency.ListDependencyListener, AddEditDependency.FloatingActionButtonFragmenAddEditDependencyListener{
     private ListDependency listDependency;
     private ListDependencyPresenter listDependencyPresenter;
     private Fragment detailDependency;
@@ -29,6 +29,10 @@ public class DependencyActivity extends AppCompatActivity implements ListDepende
     protected void onCreate (@Nullable Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_dependency);
+        chargeList();
+    }
+
+    private void chargeList() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         //1. Se crea la vista
         listDependency = (ListDependency) fragmentManager.findFragmentByTag(ListDependency.TAG);
@@ -63,5 +67,14 @@ public class DependencyActivity extends AppCompatActivity implements ListDepende
 
         //3. Si necesitamos, se asigna el presentador a su fragment.
         addEditDependency.setPresenter(addEditDependencyPresenter);
+    }
+
+    @Override
+    public void returnToList() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        //Sacamos el fragment de AddEditDependency que estará en primer lugar para que se muestre el que esta despues,
+        //es decir, el de la lista. Así no podremos volver atrás y que se muestre el fragment addeditdependency otra
+        //vez con los datos antiguos
+        fragmentManager.popBackStack();
     }
 }
