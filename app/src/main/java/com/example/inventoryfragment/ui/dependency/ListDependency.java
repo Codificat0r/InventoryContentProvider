@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.DependencyAdapter;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
+
+import java.util.List;
 
 /**
  * Created by usuario on 23/11/17.
@@ -24,8 +27,10 @@ import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPrese
 public class ListDependency extends ListFragment implements ListDependencyContract.View{
     public static final String TAG = "listdependency";
     private ListDependencyListener callback;
+    private DependencyAdapter adapter;
     private ListDependencyContract.Presenter presenter;
 
+    //Este metodo asigna el presentador a la vista
     @Override
     public void setPresenter(BasePresenter presenter) {
         this.presenter = (ListDependencyContract.Presenter) presenter;
@@ -34,6 +39,16 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     //Para poder pasarle el re
     interface ListDependencyListener {
         void addNewDependency();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.adapter = new DependencyAdapter(getActivity());
+    }
+
+    public ListDependency() {
+        setRetainInstance(true);
     }
 
     @Override
@@ -63,6 +78,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         //de vistas.
         View rootView = inflater.inflate(R.layout.fragment_list_dependency, container, false);
 
+
         //Como se encuentra en el fragment, usamos rootView
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +87,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
                 callback.addNewDependency();
             }
         });
+        presenter.loadDependency();
 
         //Si se encontrase en el xml de la activity:
         //FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
@@ -82,6 +99,13 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //Le ponemos el adapter y le pasamos al adapter el contexto de la activity
-        setListAdapter(new DependencyAdapter(getActivity()));
+        setListAdapter(adapter);
+    }
+
+    //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.
+    @Override
+    public void showDependency(List<Dependency> list) {
+        adapter.clear();
+        adapter.addAll(list);
     }
 }

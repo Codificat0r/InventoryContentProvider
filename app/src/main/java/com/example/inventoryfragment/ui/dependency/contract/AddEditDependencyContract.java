@@ -23,17 +23,4 @@ public interface AddEditDependencyContract {
     interface Presenter extends BasePresenter{
         void validateDependency(String name, String shortname, String description);
     }
-
-    interface Interactor {
-
-        void validateDependency(String name, String shortname, String description, AddEditDependencyContract.Interactor.onEditFinishedListener onEditFinishedListener);
-
-        interface onEditFinishedListener {
-            void onNameError();
-            void onShortnameError();
-            void onDescriptionError();
-            void onShortnameLenghtError();
-            void onSuccess();
-        }
-    }
 }

@@ -102,7 +102,7 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                tilName.setError(null);
             }
 
             @Override
@@ -111,7 +111,39 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
             }
         });
         tilShortname = (TextInputLayout) rootView.findViewById(R.id.tilShortname);
+        edtShortname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tilShortname.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         tilDescription = (TextInputLayout) rootView.findViewById(R.id.tilDescription);
+        edtDescription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tilDescription.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +180,6 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
     //Si todo es correcto muestro la lista de dependencias con la nueva añadida
     @Override
     public void showDependencyList() {
-        DependencyRepository.getInstance().addDependency(new Dependency(1, edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString()));
         callback.returnToList();
     }
 

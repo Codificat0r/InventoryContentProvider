@@ -26,7 +26,8 @@ import java.util.ArrayList;
 public class DependencyAdapter extends ArrayAdapter<Dependency>{
 
     public DependencyAdapter(@NonNull Context context) {
-        super(context, R.layout.item_dependency, new ArrayList<Dependency>(DependencyRepository.getInstance().getDependencies()));
+        //LO dejamos vacio porque los cargaremos cuando el interactor nos diga que carguemos los datos:
+        super(context, R.layout.item_dependency, new ArrayList<Dependency>());
         //SE HACE AQUI EL SORT
         //sort(un new comparator)
     }

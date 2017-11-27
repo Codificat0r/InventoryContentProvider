@@ -1,17 +1,16 @@
 package com.example.inventoryfragment.ui.dependency.presenter;
 
-import android.view.View;
-
-import com.example.inventoryfragment.ui.dependency.Interactor.AddEditInteractor;
+import com.example.inventoryfragment.ui.dependency.AddEditInteractor;
+import com.example.inventoryfragment.ui.dependency.Interactor.AddEditInteractorImpl;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
 
 /**
  * Created by usuario on 23/11/17.
  */
 
-public class AddEditDependencyPresenter implements AddEditDependencyContract.Presenter, AddEditDependencyContract.Interactor.onEditFinishedListener {
+public class AddEditDependencyPresenter implements AddEditDependencyContract.Presenter, AddEditInteractor.onEditFinishedListener {
     AddEditDependencyContract.View view;
-    AddEditInteractor interactor = new AddEditInteractor();
+    AddEditInteractorImpl interactor = new AddEditInteractorImpl();
 
     public AddEditDependencyPresenter(AddEditDependencyContract.View view) {
         this.view = view;
