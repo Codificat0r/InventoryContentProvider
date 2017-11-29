@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -19,6 +18,7 @@ import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
+import com.example.inventoryfragment.ui.utils.AddEdit;
 
 /**
  * Created by usuario on 23/11/17.
@@ -34,28 +34,36 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
     private TextInputLayout tilName;
     private TextInputLayout tilShortname;
     private TextInputLayout tilDescription;
-    private FloatingActionButtonFragmenAddEditDependencyListener callback;
+    private AddEditDependencyListener callback;
+    private boolean descripcionCambiada;
+    Dependency dependency;
+    static AddEdit mode;
 
     //Patron factory
     public static AddEditDependency newInstance(@Nullable Bundle arguments) {
         AddEditDependency addEditDependency = new AddEditDependency();
+        mode = new AddEdit();
         if (arguments != null) {
             addEditDependency.setArguments(arguments);
+            mode.setMode(AddEdit.EDIT_MODE);
+        } else {
+            mode.setMode(AddEdit.ADD_MODE);
         }
         return addEditDependency;
     }
 
-    interface FloatingActionButtonFragmenAddEditDependencyListener {
+    interface AddEditDependencyListener {
         void returnToList();
+        void editDependency(Dependency dependency);
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            callback = (FloatingActionButtonFragmenAddEditDependencyListener) activity;
+            callback = (AddEditDependencyListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(getActivity().getLocalClassName() + " must implements FloatingActionButtonFragmenAddEditDependencyListener");
+            throw new ClassCastException(getActivity().getLocalClassName() + " must implements AddEditDependencyListener");
         }
     }
 
@@ -137,6 +145,7 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 tilDescription.setError(null);
+                descripcionCambiada = true;
             }
 
             @Override
@@ -148,11 +157,27 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.validateDependency(edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString());
+                if (mode.getMode() == AddEdit.EDIT_MODE) {
+                    if (descripcionCambiada == true) {
+                        dependency.setDescription(edtDescription.getText().toString());
+                        DependencyRepository.getInstance().getDependencies().remove(getArguments().getInt("position"));
+                        callback.editDependency(dependency);
+                    }
+                    descripcionCambiada = false;
+                    callback.returnToList();
+                } else {
+                    presenter.validateDependency(edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString());
+                }
             }
         });
-        if (getArguments() != null) { //SI HAY ARGUMENTOS, SE TRATA DE UNA EDICION
-
+        if (mode.getMode() == AddEdit.EDIT_MODE) { //SI HAY ARGUMENTOS, SE TRATA DE UNA EDICION
+            Bundle arguments = getArguments();
+            dependency = arguments.getParcelable("dependency");
+            edtName.setText(dependency.getName());
+            edtName.setEnabled(false);
+            edtShortname.setText(dependency.getShortname());
+            edtShortname.setEnabled(false);
+            edtDescription.setText(dependency.getDescription());
         }
         return rootView;
     }
@@ -182,6 +207,5 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
     public void showDependencyList() {
         callback.returnToList();
     }
-
 
 }

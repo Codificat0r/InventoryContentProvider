@@ -9,9 +9,13 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.data.db.model.Dependency;
+import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
@@ -38,7 +42,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
 
     //Para poder pasarle el re
     interface ListDependencyListener {
-        void addNewDependency();
+        void addNewDependency(Bundle bundle);
     }
 
     @Override
@@ -84,7 +88,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.addNewDependency();
+                callback.addNewDependency(null);
             }
         });
         presenter.loadDependency();
@@ -100,6 +104,17 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         super.onViewCreated(view, savedInstanceState);
         //Le ponemos el adapter y le pasamos al adapter el contexto de la activity
         setListAdapter(adapter);
+        ListView lv = (ListView) view.findViewById(android.R.id.list);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("dependency", (Dependency) parent.getItemAtPosition(position));
+                //DependencyRepository.getInstance().getDependencies().remove(position);
+                bundle.putInt("position", position);
+                callback.addNewDependency(bundle);
+            }
+        });
     }
 
     //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.

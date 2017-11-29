@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ListDependencyPresenter implements ListDependencyContract.Presenter, ListDependencyInteractorImpl.OnLoadFinishedListener {
     private ListDependencyContract.View view;
-    private ListDependencyInteractorImpl listDependencyInteractorImpl;
+    private ListDependencyInteractorImpl listDependencyInteractorImpl = new ListDependencyInteractorImpl(this);
 
     public ListDependencyPresenter(ListDependencyContract.View view) {
         this.view = view;

@@ -1,5 +1,7 @@
 package com.example.inventoryfragment.data.db.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import java.util.Comparator;
@@ -9,7 +11,7 @@ import java.util.Comparator;
  * @author Carlos Cruz Domínguez
  */
 
-public class Dependency implements Comparable<Dependency>{
+public class Dependency implements Comparable<Dependency>, Parcelable{
     private int _ID;
     private String name;
     private String shortname;
@@ -63,6 +65,16 @@ public class Dependency implements Comparable<Dependency>{
     @Override
     public int compareTo(@NonNull Dependency o) {
         return name.compareTo(o.getName());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 
     public static class Comparador implements Comparator<Dependency>{
