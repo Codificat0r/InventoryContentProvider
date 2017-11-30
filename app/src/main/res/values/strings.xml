@@ -30,5 +30,8 @@
     <string name="edtName">Escriba el nombre</string>
     <string name="edtShortname">Escriba el nombre corto</string>
     <string name="edtDescription">Añada una descripcion</string>
+    <string name="fragment_listdependency_delete">Eliminar dependencia</string>
+    <string name="btnOk">Aceptar</string>
+    <string name="btnCancel">Cancelar</string>
 
 </resources>

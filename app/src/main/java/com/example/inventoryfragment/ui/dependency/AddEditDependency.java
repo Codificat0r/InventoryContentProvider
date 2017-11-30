@@ -157,6 +157,7 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Hay que delegar la edicion en el interactor.
                 if (mode.getMode() == AddEdit.EDIT_MODE) {
                     if (descripcionCambiada == true) {
                         dependency.setDescription(edtDescription.getText().toString());
@@ -208,4 +209,15 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
         callback.returnToList();
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
 }

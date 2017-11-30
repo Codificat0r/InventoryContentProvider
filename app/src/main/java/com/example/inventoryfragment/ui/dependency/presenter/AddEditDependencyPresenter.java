@@ -46,4 +46,9 @@ public class AddEditDependencyPresenter implements AddEditDependencyContract.Pre
     }
 
 
+    @Override
+    public void onDestroy() {
+        interactor = null;
+        view = null;
+    }
 }

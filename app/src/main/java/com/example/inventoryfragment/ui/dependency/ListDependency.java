@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,7 +19,7 @@ import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
-import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
+import com.example.inventoryfragment.ui.utils.CommonDialogUtils;
 
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.adapter = new DependencyAdapter(getActivity());
+        setRetainInstance(true);
     }
 
     public ListDependency() {
@@ -115,6 +117,37 @@ public class ListDependency extends ListFragment implements ListDependencyContra
                 callback.addNewDependency(bundle);
             }
         });
+        //Este metodo va a llamar al onCreateContextMenu
+        registerForContextMenu(getListView());
+    }
+
+    //Menu contextual (pulsacion larga) sobre la lisya
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        //Le ponemos el titulo
+        menu.setHeaderTitle("Opciones de la dependencia");
+        //Inflamos el el layout del menu en el menu.
+        getActivity().getMenuInflater().inflate(R.menu.menu_fragment_listdependency, menu);
+    }
+
+    //https://www.mikeplate.com/2010/01/21/show-a-context-menu-for-long-clicks-in-an-android-listview/
+    //Cuando se selecciona una opcion del menu contextual realizaremos las acciones correspondientes a esa opcion:
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        //En este caso si vamos a usar un switch, pasando del Clean Code.
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.action_listdependency_delete:
+                Bundle bundle = new Bundle();
+                bundle.putString(CommonDialogUtils.MESSAGE, "¿Desea eliminar la dependencia " + DependencyRepository.getInstance().getDependencies().get(info.position).getName() + "?");
+                bundle.putString(CommonDialogUtils.TITLE, "Eliminar dependencia " + DependencyRepository.getInstance().getDependencies().get(info.position).getName());
+                //No pasar position, sino el objeto Dependency ya que si se ordena por medio o lo que sea eliminamos el que no es.
+                bundle.putInt(CommonDialogUtils.POSITION, info.position);
+                CommonDialogUtils.showConfirmDialog(bundle, getActivity(), presenter).show();
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 
     //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.
@@ -122,5 +155,18 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     public void showDependency(List<Dependency> list) {
         adapter.clear();
         adapter.addAll(list);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+        adapter = null;
     }
 }

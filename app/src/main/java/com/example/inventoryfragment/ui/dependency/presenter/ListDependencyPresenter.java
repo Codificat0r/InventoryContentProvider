@@ -23,10 +23,21 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
         listDependencyInteractorImpl.getAllDependencies();
     }
 
+    @Override
+    public void deleteDependency(int position) {
+        listDependencyInteractorImpl.deleteDependency(position);
+    }
+
     //Este metodo lo llama el interactor cuando el listado de dependencias esté listo. Despues se avisa a la lista para
     //que lo cargue
     @Override
     public void onSuccess(List<Dependency> list) {
         view.showDependency(list);
+    }
+
+    @Override
+    public void onDestroy() {
+        listDependencyInteractorImpl = null;
+        view = null;
     }
 }

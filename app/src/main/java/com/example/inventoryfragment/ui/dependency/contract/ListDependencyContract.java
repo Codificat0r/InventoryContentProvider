@@ -21,5 +21,6 @@ public interface ListDependencyContract {
 
     interface Presenter extends BasePresenter {
         void loadDependency();
+        void deleteDependency(int position);
     }
 }

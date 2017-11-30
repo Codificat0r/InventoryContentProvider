@@ -6,4 +6,5 @@ package com.example.inventoryfragment.ui.dependency;
 
 public interface ListDependencyInteractor {
         void getAllDependencies();
+        void deleteDependency(int position);
 }

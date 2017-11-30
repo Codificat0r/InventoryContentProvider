@@ -1,5 +1,13 @@
 package com.example.inventoryfragment.ui.utils;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
+
+import com.example.inventoryfragment.R;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,4 +39,30 @@ public class CommonUtils {
         matcher = pattern.matcher(password);
         return matcher.matches();
     }
+
+    //Una solucion:
+
+    /*interface ConfirmationDialog {
+        String MESSAGE = "message";
+        String TITLE = "title";
+    }
+
+    public static Dialog showConfirmDialog(Bundle bundle, Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(bundle.getString(ConfirmationDialog.MESSAGE))
+        .setTitle(bundle.getString(ConfirmationDialog.TITLE))
+        .setPositiveButton(R.string.btnOk, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        })
+        .setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        return builder.create();
+    }*/
 }
