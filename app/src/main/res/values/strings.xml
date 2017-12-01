@@ -33,5 +33,7 @@
     <string name="fragment_listdependency_delete">Eliminar dependencia</string>
     <string name="btnOk">Aceptar</string>
     <string name="btnCancel">Cancelar</string>
+    <string name="ordenar_por_nombre">Ordenar por nombre</string>
+    <string name="ordenar_por_id">Ordenar por id</string>
 
 </resources>

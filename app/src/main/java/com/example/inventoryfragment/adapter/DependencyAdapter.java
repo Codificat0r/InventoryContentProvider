@@ -12,9 +12,12 @@ import android.widget.TextView;
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.data.db.repository.DependencyRepository;
+import com.example.inventoryfragment.ui.utils.comparator.IdComparator;
+import com.example.inventoryfragment.ui.utils.comparator.NameComparator;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 //Dentro de un package es el unico sitio donde hay que hacer un import de R.
 

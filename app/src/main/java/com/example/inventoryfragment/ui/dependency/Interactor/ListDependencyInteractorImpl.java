@@ -22,6 +22,7 @@ public class ListDependencyInteractorImpl implements ListDependencyInteractor{
     public interface OnLoadFinishedListener {
         void onSuccess(List<Dependency> list);
         void onSuccessDelete(List<Dependency> list);
+        void onSuccessOrder(List<Dependency> list);
     }
 
     @Override
@@ -34,5 +35,18 @@ public class ListDependencyInteractorImpl implements ListDependencyInteractor{
         DependencyRepository.getInstance().deleteDependency(dependency);
         listener.onSuccessDelete(DependencyRepository.getInstance().getDependencies());
     }
+
+    @Override
+    public void orderByName() {
+        DependencyRepository.getInstance().orderByName();
+        listener.onSuccessOrder(DependencyRepository.getInstance().getDependencies());
+    }
+
+    @Override
+    public void orderById() {
+        DependencyRepository.getInstance().orderById();
+        listener.onSuccessOrder(DependencyRepository.getInstance().getDependencies());
+    }
+
 
 }

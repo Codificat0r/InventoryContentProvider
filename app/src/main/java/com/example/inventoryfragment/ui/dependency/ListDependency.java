@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,8 +94,29 @@ public class ListDependency extends ListFragment implements ListDependencyContra
 
         //Si se encontrase en el xml de la activity:
         //FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
-
+        setHasOptionsMenu(true);
+        listDependencyPresenter.orderById();
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_listdependency, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_order_dependencies_by_name:
+                listDependencyPresenter.orderByName();
+                break;
+            case R.id.action_order_dependencies_by_id:
+                listDependencyPresenter.orderById();
+                break;
+        }
+
+        return true;
     }
 
     @Override

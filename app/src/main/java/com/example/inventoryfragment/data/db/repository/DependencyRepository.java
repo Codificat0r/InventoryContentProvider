@@ -1,6 +1,8 @@
 package com.example.inventoryfragment.data.db.repository;
 
 import com.example.inventoryfragment.data.db.model.Dependency;
+import com.example.inventoryfragment.ui.utils.comparator.IdComparator;
+import com.example.inventoryfragment.ui.utils.comparator.NameComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,16 +43,16 @@ public class DependencyRepository {
     Métodos
      */
     private void initialize () {
-        addDependency(new Dependency(1,"1º Ciclo Formativo Grado Superior","1CFGS","1CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(2,"2º Ciclo Formativo Grado Superior","2CFGS","2CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(3,"3º Ciclo Formativo Grado Superior","3CFGS","3CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(4,"4º Ciclo Formativo Grado Superior","4CFGS","4CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(5,"5º Ciclo Formativo Grado Superior","5CFGS","5CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(6,"6º Ciclo Formativo Grado Superior","6CFGS","6CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(7,"7º Ciclo Formativo Grado Superior","7CFGS","7CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(8,"8º Ciclo Formativo Grado Superior","8CFGS","8CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(9,"9º Ciclo Formativo Grado Superior","9CFGS","9CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(10,"10º Ciclo Formativo Grado Superior","10CFGS","10CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(0,"1º Ciclo Formativo Grado Superior","1CFGS","1CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(20,"2º Ciclo Formativo Grado Superior","2CFGS","2CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(7,"3º Ciclo Formativo Grado Superior","3CFGS","3CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(8,"4º Ciclo Formativo Grado Superior","4CFGS","4CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(1,"5º Ciclo Formativo Grado Superior","5CFGS","5CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(11,"6º Ciclo Formativo Grado Superior","6CFGS","6CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(3,"7º Ciclo Formativo Grado Superior","7CFGS","7CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(4,"8º Ciclo Formativo Grado Superior","8CFGS","8CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(6,"9º Ciclo Formativo Grado Superior","9CFGS","9CFGS Desarrollo Aplicaciones Multiplataforma"));
+        addDependency(new Dependency(5,"10º Ciclo Formativo Grado Superior","10CFGS","10CFGS Desarrollo Aplicaciones Multiplataforma"));
     }
 
     /**
@@ -99,5 +101,13 @@ public class DependencyRepository {
         }
         if (tmpBorrar != null)
             dependencies.remove(tmpBorrar);*/
+    }
+
+    public void orderByName() {
+        Collections.sort(dependencies, new NameComparator());
+    }
+
+    public void orderById() {
+        Collections.sort(dependencies, new IdComparator());
     }
 }

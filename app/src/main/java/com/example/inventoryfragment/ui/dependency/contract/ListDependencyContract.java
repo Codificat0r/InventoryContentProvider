@@ -23,5 +23,7 @@ public interface ListDependencyContract {
     interface Presenter extends BasePresenter {
         void loadDependency();
         void deleteDependency(Dependency dependency);
+        void orderByName();
+        void orderById();
     }
 }

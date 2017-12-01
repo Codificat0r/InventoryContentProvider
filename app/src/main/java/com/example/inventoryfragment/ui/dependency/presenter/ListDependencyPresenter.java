@@ -31,6 +31,16 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
         listDependencyInteractorImpl.deleteDependency(dependency);
     }
 
+    @Override
+    public void orderByName() {
+        listDependencyInteractorImpl.orderByName();
+    }
+
+    @Override
+    public void orderById() {
+        listDependencyInteractorImpl.orderById();
+    }
+
     //Este metodo lo llama el interactor cuando el listado de dependencias esté listo. Despues se avisa a la lista para
     //que lo cargue
     @Override
@@ -40,6 +50,11 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     @Override
     public void onSuccessDelete(List<Dependency> list) {
+        view.showDependency(list);
+    }
+
+    @Override
+    public void onSuccessOrder(List<Dependency> list) {
         view.showDependency(list);
     }
 
