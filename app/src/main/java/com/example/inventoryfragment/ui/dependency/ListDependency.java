@@ -95,7 +95,6 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         //Si se encontrase en el xml de la activity:
         //FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         setHasOptionsMenu(true);
-        listDependencyPresenter.orderById();
         return rootView;
     }
 
