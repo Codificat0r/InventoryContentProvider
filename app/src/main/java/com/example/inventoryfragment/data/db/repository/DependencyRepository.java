@@ -4,6 +4,7 @@ import com.example.inventoryfragment.data.db.model.Dependency;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * Clase que almacenará diferentes dependencias.
@@ -75,5 +76,28 @@ public class DependencyRepository {
     public ArrayList<Dependency> getDependencies() {
         Collections.sort(dependencies);
         return dependencies;
+    }
+
+    public void deleteDependency(Dependency d) {
+        Iterator<Dependency> iterator = dependencies.iterator();
+        Dependency dependency;
+        //Dependency tmpBorrar = null;
+        //Mientras siga habiendo elementos, comprueba. No podemos hacerlo con un for o foreach ya que es en modo lectura.
+        while (iterator.hasNext()) {
+            //Saca el siguiente elemento
+            dependency = iterator.next();
+            if (dependency.getName().equals(d.getName())) {
+                iterator.remove();
+            }
+        }
+
+        //Otra forma QUE LE GUSTA MENOS A LOURDES (aprender la de iterator para el control)
+
+        /*for (Dependency dependency:dependencies) {
+           if (dependency.getName().equals(d.getName()))
+               tmpBorrar = dependency;
+        }
+        if (tmpBorrar != null)
+            dependencies.remove(tmpBorrar);*/
     }
 }

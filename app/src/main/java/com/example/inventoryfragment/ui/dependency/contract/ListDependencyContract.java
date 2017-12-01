@@ -17,10 +17,11 @@ public interface ListDependencyContract {
 
     interface View extends BaseView {
         void showDependency(List<Dependency> list);
+        void updateAdapter();
     }
 
     interface Presenter extends BasePresenter {
         void loadDependency();
-        void deleteDependency(int position);
+        void deleteDependency(Dependency dependency);
     }
 }

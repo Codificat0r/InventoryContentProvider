@@ -18,6 +18,7 @@ import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
+import com.example.inventoryfragment.ui.dependency.presenter.AddEditDependencyPresenter;
 import com.example.inventoryfragment.ui.utils.AddEdit;
 
 /**
@@ -26,7 +27,6 @@ import com.example.inventoryfragment.ui.utils.AddEdit;
 
 public class AddEditDependency extends Fragment implements AddEditDependencyContract.View {
     public static final String TAG = "addeditdependency";
-    private AddEditDependencyContract.Presenter presenter;
     private FloatingActionButton fab;
     private EditText edtName;
     private EditText edtShortname;
@@ -38,6 +38,7 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
     private boolean descripcionCambiada;
     Dependency dependency;
     static AddEdit mode;
+    private AddEditDependencyPresenter addEditDependencyPresenter;
 
     //Patron factory
     public static AddEditDependency newInstance(@Nullable Bundle arguments) {
@@ -65,11 +66,6 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().getLocalClassName() + " must implements AddEditDependencyListener");
         }
-    }
-
-    @Override
-    public void setPresenter(BasePresenter presenter) {
-        this.presenter = (AddEditDependencyContract.Presenter) presenter;
     }
 
     @Override
@@ -101,6 +97,7 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
         edtShortname = (EditText) rootView.findViewById(R.id.edtShortname);
         edtDescription = (EditText) rootView.findViewById(R.id.edtDescription);
         tilName = (TextInputLayout) rootView.findViewById(R.id.tilName);
+        addEditDependencyPresenter = new AddEditDependencyPresenter(this);
         edtName = (EditText) rootView.findViewById(R.id.edtName);
         edtName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -167,7 +164,7 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
                     descripcionCambiada = false;
                     callback.returnToList();
                 } else {
-                    presenter.validateDependency(edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString());
+                    addEditDependencyPresenter.validateDependency(edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString());
                 }
             }
         });
@@ -218,6 +215,6 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
     @Override
     public void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
+        addEditDependencyPresenter.onDestroy();
     }
 }

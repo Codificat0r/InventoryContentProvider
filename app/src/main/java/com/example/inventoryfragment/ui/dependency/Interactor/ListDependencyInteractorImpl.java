@@ -21,6 +21,7 @@ public class ListDependencyInteractorImpl implements ListDependencyInteractor{
 
     public interface OnLoadFinishedListener {
         void onSuccess(List<Dependency> list);
+        void onSuccessDelete(List<Dependency> list);
     }
 
     @Override
@@ -29,9 +30,9 @@ public class ListDependencyInteractorImpl implements ListDependencyInteractor{
     }
 
     @Override
-    public void deleteDependency(int position) {
-        DependencyRepository.getInstance().getDependencies().remove(position);
-        listener.onSuccess(DependencyRepository.getInstance().getDependencies());
+    public void deleteDependency(Dependency dependency) {
+        DependencyRepository.getInstance().deleteDependency(dependency);
+        listener.onSuccessDelete(DependencyRepository.getInstance().getDependencies());
     }
 
 }

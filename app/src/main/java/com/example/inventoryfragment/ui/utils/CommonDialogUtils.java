@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
 import com.example.inventoryfragment.R;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 
 /**
@@ -26,7 +27,7 @@ public class CommonDialogUtils {
                 .setPositiveButton(R.string.btnOk, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        p.deleteDependency(bundle.getInt(POSITION));
+                        p.deleteDependency((Dependency) bundle.getParcelable(POSITION));
                         dialog.cancel();
                     }
                 })

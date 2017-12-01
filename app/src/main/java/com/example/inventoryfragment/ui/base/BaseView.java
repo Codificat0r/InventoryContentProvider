@@ -5,5 +5,5 @@ package com.example.inventoryfragment.ui.base;
  */
 
 public interface BaseView {
-    void setPresenter(BasePresenter presenter);
+
 }

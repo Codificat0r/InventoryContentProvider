@@ -19,6 +19,7 @@ import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
+import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
 import com.example.inventoryfragment.ui.utils.CommonDialogUtils;
 
 import java.util.List;
@@ -33,13 +34,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     public static final String TAG = "listdependency";
     private ListDependencyListener callback;
     private DependencyAdapter adapter;
-    private ListDependencyContract.Presenter presenter;
-
-    //Este metodo asigna el presentador a la vista
-    @Override
-    public void setPresenter(BasePresenter presenter) {
-        this.presenter = (ListDependencyContract.Presenter) presenter;
-    }
+    private ListDependencyPresenter listDependencyPresenter;
 
     //Para poder pasarle el re
     interface ListDependencyListener {
@@ -84,7 +79,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         //de vistas.
         View rootView = inflater.inflate(R.layout.fragment_list_dependency, container, false);
 
-
+        listDependencyPresenter = new ListDependencyPresenter(this);
         //Como se encuentra en el fragment, usamos rootView
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +88,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
                 callback.addNewDependency(null);
             }
         });
-        presenter.loadDependency();
+        listDependencyPresenter.loadDependency();
 
         //Si se encontrase en el xml de la activity:
         //FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
@@ -143,11 +138,16 @@ public class ListDependency extends ListFragment implements ListDependencyContra
                 bundle.putString(CommonDialogUtils.MESSAGE, "¿Desea eliminar la dependencia " + DependencyRepository.getInstance().getDependencies().get(info.position).getName() + "?");
                 bundle.putString(CommonDialogUtils.TITLE, "Eliminar dependencia " + DependencyRepository.getInstance().getDependencies().get(info.position).getName());
                 //No pasar position, sino el objeto Dependency ya que si se ordena por medio o lo que sea eliminamos el que no es.
-                bundle.putInt(CommonDialogUtils.POSITION, info.position);
-                CommonDialogUtils.showConfirmDialog(bundle, getActivity(), presenter).show();
+                bundle.putParcelable(CommonDialogUtils.POSITION, DependencyRepository.getInstance().getDependencies().get(info.position));
+                CommonDialogUtils.showConfirmDialog(bundle, getActivity(), listDependencyPresenter).show();
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void updateAdapter() {
+
     }
 
     //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.
@@ -166,7 +166,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     @Override
     public void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
+        listDependencyPresenter.onDestroy();
         adapter = null;
     }
 }
