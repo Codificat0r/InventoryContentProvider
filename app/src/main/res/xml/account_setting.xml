@@ -3,7 +3,7 @@
 
     <SwitchPreference
         android:defaultValue="false"
-        android:key="rememberUser"
+        android:key="pref_key_current_user_remember"
         android:title="@string/pref_remember_user_title"
         android:summaryOn="@string/pref_remember_user_on_summary"
         android:summaryOff="@string/pref_remember_user_off_summary"/>
@@ -11,11 +11,11 @@
     <EditTextPreference
         android:title="@string/pref_user_title"
         android:summary="@string/pref_user_summary"
-        android:key="usuario"/>
+        android:key="pref_key_current_user_name"/>
 
     <EditTextPreference
         android:title="@string/pref_password_title"
         android:summary="@string/pref_password_summary"
-        android:key="password"
+        android:key="pref_key_current_user_password"
         android:inputType="textPassword"/>
 </PreferenceScreen>

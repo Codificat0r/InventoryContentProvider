@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.support.v7.widget.Toolbar;
 
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.DependencyAdapter;
@@ -81,6 +83,9 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         //de vistas.
         View rootView = inflater.inflate(R.layout.fragment_list_dependency, container, false);
 
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
         listDependencyPresenter = new ListDependencyPresenter(this);
         //Como se encuentra en el fragment, usamos rootView
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
@@ -114,7 +119,6 @@ public class ListDependency extends ListFragment implements ListDependencyContra
                 listDependencyPresenter.orderById();
                 break;
         }
-
         return true;
     }
 

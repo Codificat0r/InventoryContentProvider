@@ -1,6 +1,10 @@
 package com.example.inventoryfragment.ui.inventory;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.example.inventoryfragment.data.prefs.AppPreferencesHelper;
 
 /**
  * Esta clase sirve como contenedor de datos para cargar en un ListView.
@@ -13,32 +17,26 @@ import android.app.Application;
 //para que esta clase sea el contexto de la aplicacion y poder acceder a esta.
 
 public class InventoryApplication extends Application {
-    //ArrayList<Dependency> dependencies;
+    private AppPreferencesHelper appPreferencesHelper;
+    private static Context context;
 
     public InventoryApplication() {
-        //dependencies = new ArrayList();
+        InventoryApplication.context = getApplicationContext();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        //addDependency(new Dependency(1,"1º Ciclo Formativo Grado Superior","1CFGS","1CFGS Desarrollo Aplicaciones Multiplataforma"));
-        //addDependency(new Dependency(2,"2º Ciclo Formativo Grado Superior","2CFGS","2CFGS Desarrollo Aplicaciones Multiplataforma"));
+        appPreferencesHelper = AppPreferencesHelper.getInstance();
     }
 
-        /**
-         * Método que añade una dependencia.
-         * @param dependency Dependencia a añadir.
-         */
-
-    /*
-        public void addDependency(Dependency dependency) {
-            dependencies.add(dependency);
-        }
-
-        public ArrayList<Dependency> getDependencies() {
-            return dependencies;
-        }
-        */
+    public static SharedPreferences getSharedPreferences() {
+        return InventoryApplication.context.getSharedPreferences("Inventory_pref", MODE_PRIVATE);
     }
+
+    public AppPreferencesHelper getAppPreferencesHelper() {
+        return appPreferencesHelper;
+    }
+
+}
 

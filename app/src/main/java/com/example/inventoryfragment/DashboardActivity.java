@@ -1,6 +1,7 @@
 package com.example.inventoryfragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
@@ -9,9 +10,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.inventoryfragment.data.prefs.AppPreferencesHelper;
 import com.example.inventoryfragment.ui.dependency.DependencyActivity;
 import com.example.inventoryfragment.ui.inventory.InventoryActivity;
+import com.example.inventoryfragment.ui.inventory.InventoryApplication;
 import com.example.inventoryfragment.ui.prefs.AccountSettingActivity;
 import com.example.inventoryfragment.ui.prefs.GeneralSettingActivity;
 import com.example.inventoryfragment.ui.product.ProductActivity;
@@ -23,6 +27,13 @@ import com.example.inventoryfragment.ui.sector.SectorActivity;
  */
 
 public class DashboardActivity extends AppCompatActivity {
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        InventoryApplication inventoryApplication = new InventoryApplication();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -132,6 +143,13 @@ public class DashboardActivity extends AppCompatActivity {
                     break;
             }
         }
+    }
+
+    private void showAppPreferences() {
+        AppPreferencesHelper sharedPreferences = ((InventoryApplication)getApplicationContext()).getAppPreferencesHelper();
+        sharedPreferences.setCurrentUserName("Lolita");
+        String message="Tu usuario de sesión es " + sharedPreferences.getCurrentUserName();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
 
