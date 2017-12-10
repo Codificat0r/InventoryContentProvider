@@ -1,7 +1,6 @@
 package com.example.inventoryfragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
@@ -19,7 +18,7 @@ import com.example.inventoryfragment.ui.inventory.InventoryApplication;
 import com.example.inventoryfragment.ui.prefs.AccountSettingActivity;
 import com.example.inventoryfragment.ui.prefs.GeneralSettingActivity;
 import com.example.inventoryfragment.ui.product.ProductActivity;
-import com.example.inventoryfragment.ui.sector.SectorActivity;
+import com.example.inventoryfragment.ui.sector.view.SectorActivity;
 
 /**
  * Esta clase se encarga de realizar el menú principal.

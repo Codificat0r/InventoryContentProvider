@@ -32,12 +32,16 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
         sectorsModified = new ArrayList<>();
     }
 
+    public SectorAdapter(ArrayList<Sector> sectors) {
+        this.sectors = sectors;
+    }
+
     //Solo se llamará este constructor cuando SectorActivity venga de un cambio de configuración
     //y se haya salvado el estado dinámico.
-    public SectorAdapter(ArrayList<Sector> sectorsModified) {
-        sectors = SectorRepository.getInstance().getSectors();
-        this.sectorsModified = sectorsModified;
-    }
+    //public SectorAdapter(ArrayList<Sector> sectorsModified) {
+    //    sectors = SectorRepository.getInstance().getSectors();
+    //    this.sectorsModified = sectorsModified;
+    //}
 
     @Override
     public SectorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
