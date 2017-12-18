@@ -24,14 +24,14 @@
         </activity>
         <activity android:name=".ui.product.ProductActivity" />
         <activity android:name=".ui.dependency.DependencyActivity" >
-
-        </activity>
-        <activity android:name=".ui.sector.view.SectorActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.sector.view.SectorActivity" >
+
         </activity>
         <activity android:name=".ui.prefs.AccountSettingActivity" />
         <activity android:name=".ui.prefs.GeneralSettingActivity" />

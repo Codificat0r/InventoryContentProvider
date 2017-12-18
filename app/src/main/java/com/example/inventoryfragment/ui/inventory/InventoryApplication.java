@@ -21,7 +21,7 @@ public class InventoryApplication extends Application {
     private static Context context;
 
     public InventoryApplication() {
-        InventoryApplication.context = getApplicationContext();
+        //InventoryApplication.context = getApplicationContext();
     }
 
     @Override
@@ -30,9 +30,9 @@ public class InventoryApplication extends Application {
         appPreferencesHelper = AppPreferencesHelper.getInstance();
     }
 
-    public static SharedPreferences getSharedPreferences() {
-        return InventoryApplication.context.getSharedPreferences("Inventory_pref", MODE_PRIVATE);
-    }
+    //public static SharedPreferences getSharedPreferences() {
+        //return InventoryApplication.context.getSharedPreferences("Inventory_pref", MODE_PRIVATE);
+    //}
 
     public AppPreferencesHelper getAppPreferencesHelper() {
         return appPreferencesHelper;

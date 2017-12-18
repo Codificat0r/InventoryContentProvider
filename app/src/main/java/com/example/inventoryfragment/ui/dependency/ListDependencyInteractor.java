@@ -2,6 +2,8 @@ package com.example.inventoryfragment.ui.dependency;
 
 import com.example.inventoryfragment.data.db.model.Dependency;
 
+import java.util.HashMap;
+
 /**
  * Created by usuario on 27/11/17.
  */

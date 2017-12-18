@@ -138,8 +138,22 @@ public class ListDependency extends ListFragment implements ListDependencyContra
                 callback.addNewDependency(bundle);
             }
         });
-        //Este metodo va a llamar al onCreateContextMenu
-        registerForContextMenu(getListView());
+
+        //VAMOS A ACTIVAR EL MODO MULTICHOICE EN LA LISTA. Con CHOICE_MODE_MULTIPLE_MODAL PODEMOS SELECCIONAR
+        //CON PULSACION LARGA. EL CHOICE_MODE_MULTIPLE ES DAR CON VARIOS DEDOS A DIFERENTES ELEMENTOS DE LA LISTA.
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        getListView().setMultiChoiceModeListener(new DependencyMultiChoiceModeListener(listDependencyPresenter));
+        //Cuando se haga una pulsacion larga sobre un elemento haremos algo...
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                getListView().setItemChecked(position, !listDependencyPresenter.isPositionChecked(position));
+                return true;
+            }
+        });
+
+        //Este metodo va a llamar al onCreateContextMenu. Ahora lo sustituiremos por la multiseleccion
+        //registerForContextMenu(getListView());
     }
 
     //Menu contextual (pulsacion larga) sobre la lisya

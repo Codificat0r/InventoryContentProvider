@@ -5,6 +5,7 @@ import com.example.inventoryfragment.ui.dependency.Interactor.ListDependencyInte
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -62,5 +63,42 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     public void onDestroy() {
         listDependencyInteractorImpl = null;
         view = null;
+    }
+
+    /**
+     * Metodos que gestionan la multiple seleccion.
+     */
+
+    //Es como un diccionario de C#, clave-valor.
+    HashMap<Integer, Boolean> selection = new HashMap<>();
+
+    @Override
+    public void setNewSelection(int position) {
+        selection.put(position, true);
+    }
+
+    @Override
+    public void removeSelection(int position) {
+        selection.remove(position);
+    }
+
+    /**
+     * Método que elimina los elementos selccionados.
+     */
+    @Override
+    public void deleteSelection() {
+
+    }
+
+    @Override
+    public void clearSelection() {
+        selection.clear();
+    }
+
+    //Devuelve si un elemento del mapa está seleccionado.
+    @Override
+    public boolean isPositionChecked(int position) {
+        return selection.containsKey(position);
+        //return selection,get(position) == null ? false : true
     }
 }

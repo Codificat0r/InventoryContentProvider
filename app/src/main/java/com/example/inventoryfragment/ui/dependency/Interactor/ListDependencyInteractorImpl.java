@@ -5,6 +5,7 @@ import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.dependency.ListDependencyInteractor;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**

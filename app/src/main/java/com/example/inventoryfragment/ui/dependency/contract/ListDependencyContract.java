@@ -25,5 +25,11 @@ public interface ListDependencyContract {
         void deleteDependency(Dependency dependency);
         void orderByName();
         void orderById();
+
+        void setNewSelection(int position);
+        void removeSelection(int position);
+        void deleteSelection();
+        void clearSelection();
+        boolean isPositionChecked(int position);
     }
 }
