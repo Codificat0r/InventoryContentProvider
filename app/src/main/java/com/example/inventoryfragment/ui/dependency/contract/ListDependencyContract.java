@@ -1,5 +1,8 @@
 package com.example.inventoryfragment.ui.dependency.contract;
 
+import android.view.ActionMode;
+
+import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.base.BaseView;
@@ -18,6 +21,9 @@ public interface ListDependencyContract {
     interface View extends BaseView {
         void showDependency(List<Dependency> list);
         void updateAdapter();
+        void closeActionMode();
+
+        void putActionMode(ActionMode mode);
     }
 
     interface Presenter extends BasePresenter {
@@ -28,8 +34,11 @@ public interface ListDependencyContract {
 
         void setNewSelection(int position);
         void removeSelection(int position);
-        void deleteSelection();
+        void deleteSelection(DependencyAdapter adapter);
         void clearSelection();
         boolean isPositionChecked(int position);
+        void giveViewActionMode(ActionMode mode);
+
+        void checkActionMode();
     }
 }

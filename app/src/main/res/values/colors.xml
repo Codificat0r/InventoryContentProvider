@@ -7,4 +7,5 @@
     <color name="colorFacebook">#3b5998</color>
     <color name="colorPrimaryLogin">#ffffff</color>
     <color name="colorCheckedChk">#a6a6a6</color>
+    <color name="background_action_mode">#ab47bc</color>
 </resources>

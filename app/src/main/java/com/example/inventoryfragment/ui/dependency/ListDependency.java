@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,6 +40,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     private ListDependencyListener callback;
     private DependencyAdapter adapter;
     private ListDependencyPresenter listDependencyPresenter;
+    private ActionMode actionMode;
 
     //Para poder pasarle el re
     interface ListDependencyListener {
@@ -92,6 +94,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listDependencyPresenter.checkActionMode();
                 callback.addNewDependency(null);
             }
         });
@@ -142,12 +145,14 @@ public class ListDependency extends ListFragment implements ListDependencyContra
         //VAMOS A ACTIVAR EL MODO MULTICHOICE EN LA LISTA. Con CHOICE_MODE_MULTIPLE_MODAL PODEMOS SELECCIONAR
         //CON PULSACION LARGA. EL CHOICE_MODE_MULTIPLE ES DAR CON VARIOS DEDOS A DIFERENTES ELEMENTOS DE LA LISTA.
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-        getListView().setMultiChoiceModeListener(new DependencyMultiChoiceModeListener(listDependencyPresenter));
+        //Deberia hacerse sin pasarle el adapter, sino con MVP.
+        getListView().setMultiChoiceModeListener(new DependencyMultiChoiceModeListener(listDependencyPresenter, adapter));
         //Cuando se haga una pulsacion larga sobre un elemento haremos algo...
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 getListView().setItemChecked(position, !listDependencyPresenter.isPositionChecked(position));
+
                 return true;
             }
         });
@@ -188,6 +193,16 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     @Override
     public void updateAdapter() {
 
+    }
+
+    @Override
+    public void closeActionMode() {
+        actionMode.finish();
+    }
+
+    @Override
+    public void putActionMode(ActionMode mode) {
+        this.actionMode = mode;
     }
 
     //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.

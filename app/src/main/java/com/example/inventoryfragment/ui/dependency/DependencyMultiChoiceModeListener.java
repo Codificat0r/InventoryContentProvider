@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 
 import com.example.inventoryfragment.R;
+import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
 
@@ -14,15 +15,17 @@ import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPrese
  * Created by usuario on 18/12/17.
  */
 
-class DependencyMultiChoiceModeListener implements AbsListView.MultiChoiceModeListener {
+class DependencyMultiChoiceModeListener implements AbsListView.MultiChoiceModeListener{
 
     //Podemos usar este mismo o crear uno nuevo que solamente gestione
     //la multiseleccion.
     private ListDependencyContract.Presenter presenter;
+    private DependencyAdapter adapter;
     private int count;
 
-    public DependencyMultiChoiceModeListener(ListDependencyContract.Presenter presenter) {
+    public DependencyMultiChoiceModeListener(ListDependencyContract.Presenter presenter, DependencyAdapter adapter) {
         this.presenter = presenter;
+        this.adapter = adapter;
     }
 
     @Override
@@ -45,6 +48,7 @@ class DependencyMultiChoiceModeListener implements AbsListView.MultiChoiceModeLi
         MenuInflater inflater = mode.getMenuInflater();
         inflater.inflate(R.menu.menu_fragment_listdependency, menu);
         mode.setTitle("Iniciando ActionMode");
+        presenter.giveViewActionMode(mode);
         return true;
     }
 
@@ -57,7 +61,7 @@ class DependencyMultiChoiceModeListener implements AbsListView.MultiChoiceModeLi
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_listdependency_delete:
-                presenter.deleteSelection();
+                presenter.deleteSelection(adapter);
                 break;
         }
         mode.finish();

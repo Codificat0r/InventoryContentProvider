@@ -1,12 +1,19 @@
 package com.example.inventoryfragment.ui.dependency.presenter;
 
+import android.view.ActionMode;
+
+import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.data.db.model.Dependency;
+import com.example.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.inventoryfragment.ui.dependency.Interactor.ListDependencyInteractorImpl;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by usuario on 23/11/17.
@@ -72,6 +79,12 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     //Es como un diccionario de C#, clave-valor.
     HashMap<Integer, Boolean> selection = new HashMap<>();
 
+    /**
+     * PARA BORRAR CONSULTAMOS AL ADAPTER CUALES SON LOS ELEMENTOS DE UNA POSICION Y CUANDO TENGAMOS
+     * LOS ELEMENTOS LOS BORRAMOS EN EL INTERACTOR QUE LLAMARÁ AL REPOSITORY Y LE DIRÁ QUE LOS BORRE.
+     */
+
+
     @Override
     public void setNewSelection(int position) {
         selection.put(position, true);
@@ -86,8 +99,22 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
      * Método que elimina los elementos selccionados.
      */
     @Override
-    public void deleteSelection() {
+    public void deleteSelection(DependencyAdapter adapter) {
+        Set<Integer> positions;
+        positions = selection.keySet();
+        ArrayList<Dependency> dependencias = new ArrayList<>();
+        //Recorremos el set de integers que son las posiciones porque la clave del diccionario era la posicion del elemento.
+        //Si borramos aqui como se van reduciendo las posiciones se sale de indice. Primero hay que almacenar
+        //las dependencias a borrar y luego borrarlas una a una.
+        for (Iterator<Integer> it = positions.iterator(); it.hasNext(); ) {
+            //Integer f = it.next();
+            dependencias.add(adapter.getItem(it.next()));
+        }
 
+        //Borramos todas las que haya en la lista de dependencias a borrar.
+        for (int i = 0; i < dependencias.size(); i++) {
+            listDependencyInteractorImpl.deleteDependency(dependencias.get(i));
+        }
     }
 
     @Override
@@ -100,5 +127,16 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     public boolean isPositionChecked(int position) {
         return selection.containsKey(position);
         //return selection,get(position) == null ? false : true
+    }
+
+    @Override
+    public void giveViewActionMode(ActionMode mode) {
+        view.putActionMode(mode);
+    }
+
+    @Override
+    public void checkActionMode() {
+        if (!selection.isEmpty())
+            view.closeActionMode();
     }
 }

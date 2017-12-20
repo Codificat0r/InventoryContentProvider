@@ -6,10 +6,28 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Esto hace que el ActionMode de la multiseleccion se situe SOBRE la toolbar, y que esta no se vea-->
+        <item name="windowActionModeOverlay">true</item>
+        <!-- Para poner el estilo del ActionMode, le decimos que coja el creado mas abajo -->
+        <item name="actionModeStyle">@style/Widget.ActionMode</item>
     </style>
 
     <style name="LoginTheme" parent="AppTheme">
         <item name="android:textColor">@color/colorPrimaryLogin</item>
+    </style>
+
+    <!-- Cogemos y creamos un estilo basado en el del toolbar para que se muestre igual que ella -->
+    <style name="Widget.ActionMode" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/background_action_mode</item>
+        <item name="android:actionModeBackground">@color/background_action_mode</item>
+        <item name="android:background">@color/background_action_mode</item>
+        <item name="actionModeBackground">@color/background_action_mode</item>
+        <item name="android:titleTextStyle">@android:color/white</item>
+        <item name="titleTextStyle">@android:color/white</item>
+    </style>
+
+    <style name="Widget.ActionMode.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 
