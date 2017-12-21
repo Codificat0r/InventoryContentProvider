@@ -20,8 +20,8 @@ public class SectorInteractorImpl implements SectorInteractor{
     }
 
     @Override
-    public void loadAdapter() {
-        SectorAdapter adapter = new SectorAdapter(SectorRepository.getInstance().getSectors());
-        listener.onSuccessLoadAdapter(adapter);
+    public void loadAdapter(SectorAdapter.OnItemClickListener listener) {
+        SectorAdapter adapter = new SectorAdapter(SectorRepository.getInstance().getSectors(), listener);
+        this.listener.onSuccessLoadAdapter(adapter);
     }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.SectorAdapter;
@@ -19,6 +20,8 @@ public class SectorActivity extends AppCompatActivity implements ContractSector.
     private RecyclerView recyclerSector;
     private SectorAdapter sectorAdapter;
     private ContractSector.Presenter presenter;
+    //No implementamos la interfaz porque no queremos que la activity sea el escuchador, sino que este sea independiente.
+    private SectorAdapter.OnItemClickListener listener;
 
 
     @Override
@@ -34,17 +37,23 @@ public class SectorActivity extends AppCompatActivity implements ContractSector.
         recyclerSector.setLayoutManager(new GridLayoutManager(this, 2, 1, false));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        listener = new SectorAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Sector sector) {
+                Toast.makeText(SectorActivity.this, "Se ha pulsado " + sector.get_name(), Toast.LENGTH_SHORT).show();
+            }
+        };
         //if (savedInstanceState != null) {
         //    sectorAdapter = new SectorAdapter(savedInstanceState.<Sector>getParcelableArrayList("sector"));
         //} else {
-        //    sectorAdapter = new SectorAdapter();
+        sectorAdapter = new SectorAdapter(listener);
         //}
 
         //En MVP lo hacemos desde el metodo de la interfaz setAdapter.
         //recyclerSector.setAdapter(sectorAdapter);
 
         //Pedimos el adapter al presenter
-        presenter.RequestAdapter();
+        presenter.RequestAdapter(listener);
 
     }
 

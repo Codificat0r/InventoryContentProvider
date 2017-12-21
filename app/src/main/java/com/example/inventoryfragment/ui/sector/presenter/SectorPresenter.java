@@ -21,8 +21,8 @@ public class SectorPresenter implements ContractSector.Presenter, SectorInteract
     //El presenter se encarga de pedirle que cargue el adapter con los datos
     //y lo devuelva.
     @Override
-    public void RequestAdapter() {
-        interactor.loadAdapter();
+    public void RequestAdapter(SectorAdapter.OnItemClickListener listener) {
+        interactor.loadAdapter(listener);
     }
 
     @Override

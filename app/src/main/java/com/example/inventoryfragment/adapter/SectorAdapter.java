@@ -26,14 +26,22 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     //En nuestro caso en el repository.
     private ArrayList<Sector> sectorsModified;
     private OnSwitchCheckedChangeListener onSwitchCheckedChangeListener;
+    private OnItemClickListener listener;
 
-    public SectorAdapter() {
-        sectors = SectorRepository.getInstance().getSectors();
-        sectorsModified = new ArrayList<>();
+    //ONITEMCLICKLISTENER EN RECYCLERVIEW. Lo va a implementar la vista de sector.
+    public interface OnItemClickListener {
+        void onItemClick(Sector sector);
     }
 
-    public SectorAdapter(ArrayList<Sector> sectors) {
+    public SectorAdapter(OnItemClickListener listener) {
+        sectors = SectorRepository.getInstance().getSectors();
+        sectorsModified = new ArrayList<>();
+        this.listener = listener;
+    }
+
+    public SectorAdapter(ArrayList<Sector> sectors, OnItemClickListener listener) {
         this.sectors = sectors;
+        this.listener = listener;
     }
 
     //Solo se llamará este constructor cuando SectorActivity venga de un cambio de configuración
@@ -62,6 +70,8 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
         holder.txvName.setText(sectors.get(position).get_name());
         if (sectors.get(position).is_default())
             holder.txvSectorShortName.setText(sectors.get(position).get_shortname());
+        //Para el onitemclicklistener:
+        holder.bind(sectors.get(position), listener);
     }
 
     //Se crearán tantos elementos SectorViewHolder como elementos haya en el ArrayList definido dentro de la clase.
@@ -81,6 +91,18 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
             swEnabled = (Switch) itemView.findViewById(R.id.swchDefault);
             txvName = (TextView) itemView.findViewById(R.id.txvSectorName);
             txvSectorShortName = (TextView) itemView.findViewById(R.id.txvSectorShortname);
+        }
+
+        //Para el onitemclicklistener:
+        public void bind(final Sector sector, final OnItemClickListener listener) {
+            //itemView es el elemento que se esta creando en la lista en ese momento.
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Cuando se pulse el elemento se llama al onItemClick de la interfaz del listener.
+                    listener.onItemClick(sector);
+                }
+            });
         }
     }
 

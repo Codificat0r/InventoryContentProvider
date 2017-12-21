@@ -12,6 +12,6 @@ public interface ContractSector {
     }
 
     interface Presenter {
-        void RequestAdapter();
+        void RequestAdapter(SectorAdapter.OnItemClickListener listener);
     }
 }
