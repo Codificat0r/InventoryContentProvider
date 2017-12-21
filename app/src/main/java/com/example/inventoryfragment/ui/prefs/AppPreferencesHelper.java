@@ -9,7 +9,7 @@ import com.example.inventoryfragment.ui.inventory.InventoryApplication;
 import com.example.inventoryfragment.ui.utils.AppConstants;
 
 /**
- * Created by usuario on 21/12/17.
+ * FALTA POR HACER LO DEL InventoryApplication.getContext()
  */
 
 public class AppPreferencesHelper {
