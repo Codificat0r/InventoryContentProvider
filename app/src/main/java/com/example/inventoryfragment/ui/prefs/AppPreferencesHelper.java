@@ -14,7 +14,7 @@ import com.example.inventoryfragment.ui.utils.AppConstants;
 
 public class AppPreferencesHelper {
 
-    private final SharedPreferences preferences;
+    /*private final SharedPreferences preferences;
     private static AppPreferencesHelper instance;
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
     private String TAG="AppPreferencesHelper";
@@ -38,5 +38,5 @@ public class AppPreferencesHelper {
         if (instance == null)
             instance = new AppPreferencesHelper(InventoryApplication.getContext());
         return instance;
-    }
+    }*/
 }
