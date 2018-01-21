@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.inventoryfragmentcontentprovider.R;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.db.model.InventoryOpenHelper;
 import com.example.inventoryfragmentcontentprovider.data.db.repository.DependencyRepository;
 import com.example.inventoryfragmentcontentprovider.ui.inventory.InventoryApplication;
 import com.example.inventoryfragmentcontentprovider.ui.utils.AddEdit;
@@ -36,6 +37,7 @@ public class DependencyActivity extends AppCompatActivity implements ListDepende
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_dependency);
         chargeList();
+        InventoryOpenHelper.getInstance().openDatabase();
     }
 
     private void chargeList() {

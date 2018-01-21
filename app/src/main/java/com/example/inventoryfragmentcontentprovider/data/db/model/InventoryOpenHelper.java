@@ -32,12 +32,26 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
     //Cuando se crea la base de datos
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
+        /*sqLiteDatabase.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
         sqLiteDatabase.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
+        sqLiteDatabase.execSQL(InventoryContract.SectorEntry.SQL_CREATE_ENTRIES);
+        sqLiteDatabase.execSQL(InventoryContract.SectorEntry.SQL_INSERT_ENTRIES);*/
     }
 
     public void openDatabase() {
         sqLiteDatabase = singleton.getWritableDatabase();
+        try {
+            //Borramos las tablas en el orden correcto para despues poder volver a crearlas.
+            sqLiteDatabase.execSQL(InventoryContract.SectorEntry.SQL_DELETE_ENTRIES);
+            sqLiteDatabase.execSQL(InventoryContract.DependencyEntry.SQL_DELETE_ENTRIES);
+            //Creamos e insertamos los datos en las tablas.
+            sqLiteDatabase.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
+            sqLiteDatabase.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
+            sqLiteDatabase.execSQL(InventoryContract.SectorEntry.SQL_CREATE_ENTRIES);
+            sqLiteDatabase.execSQL(InventoryContract.SectorEntry.SQL_INSERT_ENTRIES);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //Cuando incrementamos la version respecto a la anterior
