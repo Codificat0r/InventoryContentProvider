@@ -1,5 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
+import com.example.inventoryfragmentcontentprovider.data.db.dao.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.model.User;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 public class UserRepository {
 
     private ArrayList<User> users;
-
     private static UserRepository userRepository;
 
     static {

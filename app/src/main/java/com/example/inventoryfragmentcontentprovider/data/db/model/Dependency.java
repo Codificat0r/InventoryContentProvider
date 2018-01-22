@@ -16,6 +16,7 @@ public class Dependency implements Comparable<Dependency>, Parcelable{
     private String name;
     private String shortname;
     private String description;
+    private String imageName;
 
     public int get_ID() {
         return _ID;
@@ -49,11 +50,12 @@ public class Dependency implements Comparable<Dependency>, Parcelable{
         this.description = description;
     }
 
-    public Dependency(int _ID, String name, String shortname, String description) {
+    public Dependency(int _ID, String name, String shortname, String description, String imageName) {
         this._ID = _ID;
         this.name = name;
         this.shortname = shortname;
         this.description = description;
+        this.imageName = imageName;
     }
 
     @Override
@@ -74,7 +76,7 @@ public class Dependency implements Comparable<Dependency>, Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        //dest.writeInt();...
     }
 
     public static class Comparador implements Comparator<Dependency>{

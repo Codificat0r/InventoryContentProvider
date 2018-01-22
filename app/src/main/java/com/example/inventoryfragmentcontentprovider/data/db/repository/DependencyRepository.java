@@ -1,5 +1,8 @@
 package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
+import android.database.Cursor;
+
+import com.example.inventoryfragmentcontentprovider.data.db.dao.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.ui.utils.comparator.IdComparator;
 import com.example.inventoryfragmentcontentprovider.ui.utils.comparator.NameComparator;
@@ -9,11 +12,17 @@ import java.util.Collections;
 import java.util.Iterator;
 
 /**
- * Clase que almacenará diferentes dependencias.
+ * Clase que almacenará diferentes dependencias OBTENIDAS DEL DAO. Es el repository el que
+ * obtendrá los datos de la database local y la remota. Habrá un DependencyDao y un DependencyDaoWebService.
+ * Este ultimo trabajará lanzando consultas a la API REST o algo asi, es decir, trabajará con la base
+ * de datos remota. En un MVP Clean el repositorio si o si deberia devolver un ArrayList y no un cursor.
+ * Vamos a hacerlo con Cursor y con ArrayList para ver los diferentes ejemplos.
  * @author Carlos Cruz Domínguez
  */
 
 public class DependencyRepository {
+
+    private static DependencyDao dependencyDao;
 
     /*
     Declaración
@@ -36,37 +45,18 @@ public class DependencyRepository {
 
     private DependencyRepository() {
         this.dependencies = new ArrayList<>();
-        initialize();
+        //CADA REPOSITORIO TIENE SU PROPIO DAO.
+        this.dependencyDao = new DependencyDao();
     }
 
     /*
     Métodos
      */
-    private void initialize () {
-        addDependency(new Dependency(0,"1º Ciclo Formativo Grado Superior","1CFGS","1CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(20,"2º Ciclo Formativo Grado Superior","2CFGS","2CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(7,"3º Ciclo Formativo Grado Superior","3CFGS","3CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(8,"4º Ciclo Formativo Grado Superior","4CFGS","4CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(1,"5º Ciclo Formativo Grado Superior","5CFGS","5CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(11,"6º Ciclo Formativo Grado Superior","6CFGS","6CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(3,"7º Ciclo Formativo Grado Superior","7CFGS","7CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(4,"8º Ciclo Formativo Grado Superior","8CFGS","8CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(6,"9º Ciclo Formativo Grado Superior","9CFGS","9CFGS Desarrollo Aplicaciones Multiplataforma"));
-        addDependency(new Dependency(5,"10º Ciclo Formativo Grado Superior","10CFGS","10CFGS Desarrollo Aplicaciones Multiplataforma"));
-    }
 
-    /**
-     * Método que añade una dependencia.
-     * @param dependency Dependencia a añadir.
-     */
     public void addDependency(Dependency dependency) {
-        dependencies.add(dependency);
+        //dependencyDao.addDependency(dependency);
     }
 
-    //Siempre se llamará igual en el patrón singleton el método que devuelve la única instancia que se puede crear de
-    //dicho objeto singleton. El patrón singleton se usa para garantizar que solo hay una instancia de la clase, para ello
-    //ponemos el constructor privado e inicializamos de manera estática dentro el propio objeto de la clase que se obtendrá
-    //con getInstance.
     public static DependencyRepository getInstance() {
         //Otra opción para inicializar es esta.
         if (dependencyRepository == null)
@@ -76,38 +66,43 @@ public class DependencyRepository {
 
     //Ordenamos por el criterio POR DEFECTO antes de devolver la lista.
     public ArrayList<Dependency> getDependencies() {
-        Collections.sort(dependencies);
+        dependencies.clear();
+        //Se convertirá el cursor en ArrayList para poder devolver un ArrayList;
+        Cursor cursor = getDependenciesCursor();
+
+        //El cursor siempre lo posicionamos el primero, ya que siempre viene before first, antes del primero.
+        //Devuelve false si el cursor esta vacio y en caso contrario devuelve true y se mueve al primero
+        if (cursor.moveToFirst()) {
+            //Accedemos a las columnas en el mismo orden que hemos hecho el ALL_COLUMNS de InventoryContract.
+            //Mientras se pueda mover al siguiente (es decir, devuelve true) funciona.
+            do {
+                Dependency dependency = new Dependency(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                dependencies.add(dependency);
+            } while (cursor.moveToNext());
+        }
+
         return dependencies;
     }
 
+    public Cursor getDependenciesCursor() {
+        Cursor cursor = dependencyDao.loadAll();
+        return cursor;
+    }
+
     public void deleteDependency(Dependency d) {
-        Iterator<Dependency> iterator = dependencies.iterator();
-        Dependency dependency;
-        //Dependency tmpBorrar = null;
-        //Mientras siga habiendo elementos, comprueba. No podemos hacerlo con un for o foreach ya que es en modo lectura.
-        while (iterator.hasNext()) {
-            //Saca el siguiente elemento
-            dependency = iterator.next();
-            if (dependency.getName().equals(d.getName())) {
-                iterator.remove();
-            }
-        }
+        //AHORA CON DAO
 
-        //Otra forma QUE LE GUSTA MENOS A LOURDES (aprender la de iterator para el control)
+    }
 
-        /*for (Dependency dependency:dependencies) {
-           if (dependency.getName().equals(d.getName()))
-               tmpBorrar = dependency;
-        }
-        if (tmpBorrar != null)
-            dependencies.remove(tmpBorrar);*/
+    public boolean exists(Dependency dependency) {
+        return dependencies.contains(dependency);
     }
 
     public void orderByName() {
-        Collections.sort(dependencies, new NameComparator());
+
     }
 
     public void orderById() {
-        Collections.sort(dependencies, new IdComparator());
+
     }
 }

@@ -27,6 +27,7 @@ public class InventoryContract {
         public static final String[] ALL_COLUMNS = new String[] {
           BaseColumns._ID,COLUMN_NAME,COLUMN_SHORTNAME,COLUMN_DESCRIPTION,COLUMN_IMAGENAME
         };
+        public static final String DEFAULT_SORT = COLUMN_NAME;
 
         //Consulta de creacion de la tabla en cuestión.
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT," +

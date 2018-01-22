@@ -24,7 +24,7 @@ public class AddEditInteractorImpl implements AddEditInteractor{
         else if (shortname.length() > 10)
             onEditFinishedListener.onShortnameLenghtError();
         else {
-            DependencyRepository.getInstance().addDependency(new Dependency(1, name, shortname, description));
+            DependencyRepository.getInstance().addDependency(new Dependency(1, name, shortname, description, ""));
             onEditFinishedListener.onSuccess();
         }
     }
