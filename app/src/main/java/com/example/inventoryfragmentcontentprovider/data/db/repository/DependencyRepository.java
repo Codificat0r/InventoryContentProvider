@@ -2,6 +2,7 @@ package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
 import android.database.Cursor;
 
+import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;
 import com.example.inventoryfragmentcontentprovider.data.db.dao.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.ui.utils.comparator.IdComparator;
@@ -27,10 +28,11 @@ public class DependencyRepository {
     /*
     Declaración
      */
-    private ArrayList<Dependency> dependencies;
     //Constructor privado y hacemos que esta clase se cree a ella misma para asegurar de que solo hay un objeto
     //de la misma.
     private static DependencyRepository dependencyRepository;
+
+    public static boolean cargadosTodos;
 
     /*
     Inicialización
@@ -41,10 +43,10 @@ public class DependencyRepository {
 
     static {
         dependencyRepository = new DependencyRepository();
+        cargadosTodos = false;
     }
 
     private DependencyRepository() {
-        this.dependencies = new ArrayList<>();
         //CADA REPOSITORIO TIENE SU PROPIO DAO.
         this.dependencyDao = new DependencyDao();
     }
@@ -53,10 +55,6 @@ public class DependencyRepository {
     Métodos
      */
 
-    public void addDependency(Dependency dependency) {
-        //dependencyDao.addDependency(dependency);
-    }
-
     public static DependencyRepository getInstance() {
         //Otra opción para inicializar es esta.
         if (dependencyRepository == null)
@@ -64,38 +62,70 @@ public class DependencyRepository {
         return dependencyRepository;
     }
 
-    //Ordenamos por el criterio POR DEFECTO antes de devolver la lista.
+
+
+
+    /**======================================================================================================
+     *
+     * IMPORTANTE, VER!!!!!!!!!!!
+     *
+     * El interactor se comunicará con el repository y el repository delegará todas las tareas que se
+     * le pidan al dao, es decir, si quiero los datos ordenados, una consulta con order by, si quiero
+     * ver si existe, una consulta con un where, etc.
+     *
+     * Dependiendo de si la base de datos local y remote comparten los mismos datos, pueden heredar
+     * de una misma interfaz. Si cada uno tiene datos diferentes, cada uno será su propio tipo. Tambien
+     * puede haber dos bases de datos remotas, Firebase y MySQL como en mi caso, etc. Todas las combinaciones
+     * significan diferentes maneras de implementarlos. Ser inteligente.
+     *
+     * ======================================================================================================*/
+
+
+
+
+
     public ArrayList<Dependency> getDependencies() {
-        dependencies.clear();
-        //Se convertirá el cursor en ArrayList para poder devolver un ArrayList;
-        Cursor cursor = getDependenciesCursor();
-
-        //El cursor siempre lo posicionamos el primero, ya que siempre viene before first, antes del primero.
-        //Devuelve false si el cursor esta vacio y en caso contrario devuelve true y se mueve al primero
-        if (cursor.moveToFirst()) {
-            //Accedemos a las columnas en el mismo orden que hemos hecho el ALL_COLUMNS de InventoryContract.
-            //Mientras se pueda mover al siguiente (es decir, devuelve true) funciona.
-            do {
-                Dependency dependency = new Dependency(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-                dependencies.add(dependency);
-            } while (cursor.moveToNext());
-        }
-
+        ArrayList<Dependency> dependencies = dependencyDao.loadAll();
         return dependencies;
     }
 
-    public Cursor getDependenciesCursor() {
-        Cursor cursor = dependencyDao.loadAll();
-        return cursor;
-    }
-
-    public void deleteDependency(Dependency d) {
+    public long deleteDependency(Dependency dependency, InteractorCallback callback) {
         //AHORA CON DAO
-
+        try {
+            long count = dependencyDao.delete(dependency);
+            if (count == 0)
+                callback.onError(new Error("No se ha podido eliminar la dependencia " + dependency.getName() + " de la base de datos"));
+            else
+                callback.onSuccess();
+            return count;
+        } catch (Exception e) {
+            callback.onError(new Exception("Error: " + e.getMessage(), e));
+        }
+        return 0;
     }
 
-    public boolean exists(Dependency dependency) {
-        return dependencies.contains(dependency);
+    public long addDependency(Dependency dependency) {
+        return dependencyDao.add(dependency);
+    }
+
+    //Hay otra forma de vincular el repositorio con el interactor a traves del lanzamiento de excepciones con
+    //throws y que se la lance la excepcion al repositorio y alli la capturamos y que avise a la vista.
+    public long updateDependency(Dependency dependency, InteractorCallback callback) {
+        try {
+            long count = dependencyDao.update(dependency);
+            if (count == 0)
+                callback.onError(new Error("No se ha podido editar la dependencia " + dependency.getName() + " en la base de datos"));
+            else
+                callback.onSuccess();
+            return count;
+        } catch (Exception e) {
+            callback.onError(new Exception("Error: " + e.getMessage(), e));
+        }
+        return 0;
+    }
+
+    public boolean existsDependency(Dependency dependency) {
+        return dependencyDao.exists(dependency);
     }
 
     public void orderByName() {

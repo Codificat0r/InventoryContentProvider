@@ -12,7 +12,7 @@ public class InventoryContract {
     private InventoryContract() {
     }
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "Inventory.db";
 
     //Por cada tabla se crea una clase que implementa la interfaz BaseColumns. Dicha clase añade

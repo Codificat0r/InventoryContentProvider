@@ -1,6 +1,7 @@
 package com.example.inventoryfragmentcontentprovider.ui.dependency;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.example.inventoryfragmentcontentprovider.R;
 import com.example.inventoryfragmentcontentprovider.adapter.DependencyAdapter;
@@ -25,6 +27,7 @@ import com.example.inventoryfragmentcontentprovider.data.db.repository.Dependenc
 import com.example.inventoryfragmentcontentprovider.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragmentcontentprovider.ui.dependency.presenter.ListDependencyPresenter;
 import com.example.inventoryfragmentcontentprovider.ui.utils.CommonDialogUtils;
+import com.example.inventoryfragmentcontentprovider.ui.utils.CommonUtils;
 
 import java.util.List;
 
@@ -40,6 +43,7 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     private DependencyAdapter adapter;
     private ListDependencyPresenter listDependencyPresenter;
     private ActionMode actionMode;
+    private ProgressDialog progressDialog;
 
     //Para poder pasarle el re
     interface ListDependencyListener {
@@ -202,6 +206,27 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     @Override
     public void putActionMode(ActionMode mode) {
         this.actionMode = mode;
+    }
+
+    @Override
+    public void onDatabaseError(Error error) {
+        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onDatabaseError(Exception exception) {
+        Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showProgressDialog() {
+        progressDialog = CommonUtils.makeProgressDialog(getContext());
+        progressDialog.show();
+    }
+
+    @Override
+    public void dismissProgressDialog() {
+        progressDialog.dismiss();
     }
 
     //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.

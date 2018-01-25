@@ -1,5 +1,7 @@
 package com.example.inventoryfragmentcontentprovider.ui.dependency;
 
+import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+
 /**
  * Created by usuario on 27/11/17.
  */
@@ -8,13 +10,18 @@ package com.example.inventoryfragmentcontentprovider.ui.dependency;
     //hacemos la interfaz del interactor que es el que va a tener el presenter por contrato.
 public interface AddEditInteractor {
 
-        void validateDependency(String name, String shortname, String description, AddEditInteractor.onEditFinishedListener onEditFinishedListener);
+    //Se puede hacer en lugar que con if else con excepciones y las recoge el presenter.
+    void validateDependency(Dependency dependency, onEditFinishedListener onEditFinishedListener);
 
-        interface onEditFinishedListener {
+    interface onEditFinishedListener {
             void onNameError();
             void onShortnameError();
             void onDescriptionError();
             void onShortnameLenghtError();
             void onSuccess();
-        }
+
+        void onDatabaseError(Error error);
+
+        void onDatabaseError(Exception exception);
+    }
     }

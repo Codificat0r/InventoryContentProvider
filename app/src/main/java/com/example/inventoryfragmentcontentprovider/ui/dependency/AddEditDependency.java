@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.inventoryfragmentcontentprovider.R;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
@@ -87,6 +88,16 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
         tilDescription.setError(getString(R.string.descriptionEmptyError));
     }
 
+    @Override
+    public void showOnDatabaseError(Error error) {
+        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showOnDatabaseError(Exception exception) {
+        Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -158,12 +169,12 @@ public class AddEditDependency extends Fragment implements AddEditDependencyCont
                     if (descripcionCambiada == true) {
                         dependency.setDescription(edtDescription.getText().toString());
                         DependencyRepository.getInstance().getDependencies().remove(getArguments().getInt("position"));
-                        callback.editDependency(dependency);
+                        addEditDependencyPresenter.edit(dependency);
                     }
                     descripcionCambiada = false;
                     callback.returnToList();
                 } else {
-                    addEditDependencyPresenter.validateDependency(edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString());
+                    addEditDependencyPresenter.validateDependency(new Dependency(0, edtName.getText().toString(), edtShortname.getText().toString(), edtDescription.getText().toString(), "No tengo imagen"));
                 }
             }
         });

@@ -1,5 +1,8 @@
 package com.example.inventoryfragmentcontentprovider.ui.utils;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +33,13 @@ public class CommonUtils {
         //Usamos el matcher para comprobar la password con el patron establecido.
         matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+
+    public static ProgressDialog makeProgressDialog(Context context) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Conectando a base de datos . . .");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        return progressDialog;
     }
 
     //Una solucion:

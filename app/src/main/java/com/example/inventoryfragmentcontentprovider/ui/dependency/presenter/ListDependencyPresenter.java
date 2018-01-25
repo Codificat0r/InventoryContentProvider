@@ -30,6 +30,7 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     @Override
     public void loadDependency() {
+        view.showProgressDialog();
         listDependencyInteractorImpl.getAllDependencies();
     }
 
@@ -52,6 +53,7 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     //que lo cargue
     @Override
     public void onSuccess(List<Dependency> list) {
+        view.dismissProgressDialog();
         view.showDependency(list);
     }
 
@@ -63,6 +65,16 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     @Override
     public void onSuccessOrder(List<Dependency> list) {
         view.showDependency(list);
+    }
+
+    @Override
+    public void onDatabaseError(Error error) {
+        view.onDatabaseError(error);
+    }
+
+    @Override
+    public void onDatabaseError(Exception exception) {
+        view.onDatabaseError(exception);
     }
 
     @Override

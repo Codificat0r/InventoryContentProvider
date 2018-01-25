@@ -3,7 +3,7 @@ package com.example.inventoryfragmentcontentprovider.ui.inventory;
 import android.app.Application;
 import android.content.Context;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.InventoryOpenHelper;
+import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
 import com.example.inventoryfragmentcontentprovider.data.prefs.AppPreferencesHelper;
 
 /**

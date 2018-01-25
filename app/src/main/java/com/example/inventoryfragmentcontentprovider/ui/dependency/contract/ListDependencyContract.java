@@ -24,6 +24,14 @@ public interface ListDependencyContract {
         void closeActionMode();
 
         void putActionMode(ActionMode mode);
+
+        void onDatabaseError(Error error);
+
+        void onDatabaseError(Exception exception);
+
+        void showProgressDialog();
+
+        void dismissProgressDialog();
     }
 
     interface Presenter extends BasePresenter {

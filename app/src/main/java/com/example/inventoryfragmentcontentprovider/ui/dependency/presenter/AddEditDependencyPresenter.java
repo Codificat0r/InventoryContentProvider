@@ -1,5 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.dependency.presenter;
 
+import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.ui.dependency.AddEditInteractor;
 import com.example.inventoryfragmentcontentprovider.ui.dependency.Interactor.AddEditInteractorImpl;
 import com.example.inventoryfragmentcontentprovider.ui.dependency.contract.AddEditDependencyContract;
@@ -10,15 +11,20 @@ import com.example.inventoryfragmentcontentprovider.ui.dependency.contract.AddEd
 
 public class AddEditDependencyPresenter implements AddEditDependencyContract.Presenter, AddEditInteractor.onEditFinishedListener {
     AddEditDependencyContract.View view;
-    AddEditInteractorImpl interactor = new AddEditInteractorImpl();
+    AddEditInteractorImpl interactor = new AddEditInteractorImpl(this);
 
     public AddEditDependencyPresenter(AddEditDependencyContract.View view) {
         this.view = view;
     }
 
     @Override
-    public void validateDependency(String name, String shortname, String description) {
-        interactor.validateDependency(name, shortname, description, this);
+    public void validateDependency(Dependency dependency) {
+        interactor.validateDependency(dependency, this);
+    }
+
+    @Override
+    public void edit(Dependency dependency) {
+        interactor.validateDependency(dependency, this);
     }
 
     public void onNameError() {
@@ -43,6 +49,16 @@ public class AddEditDependencyPresenter implements AddEditDependencyContract.Pre
     @Override
     public void onSuccess() {
         view.showDependencyList();
+    }
+
+    @Override
+    public void onDatabaseError(Error error) {
+        view.showOnDatabaseError(error);
+    }
+
+    @Override
+    public void onDatabaseError(Exception exception) {
+        view.showOnDatabaseError(exception);
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.dependency.contract;
 
+import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.ui.base.BasePresenter;
 import com.example.inventoryfragmentcontentprovider.ui.base.BaseView;
 
@@ -18,9 +19,14 @@ public interface AddEditDependencyContract {
         void showShortnameEmptyError();
         void showShortnameLenghtError();
         void showDescriptionEmptyError();
+
+        void showOnDatabaseError(Error error);
+
+        void showOnDatabaseError(Exception exception);
     }
 
     interface Presenter extends BasePresenter{
-        void validateDependency(String name, String shortname, String description);
+        void validateDependency(Dependency dependency);
+        void edit(Dependency dependency);
     }
 }
