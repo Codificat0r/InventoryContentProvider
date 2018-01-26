@@ -14,10 +14,11 @@ public class Sector implements Parcelable{
     private String _shortname;
     private String _description;
     private int _dependencyId;
+    private String _imageName;
     private boolean _enabled;
     private boolean _default;
 
-    public Sector(int id, String _name, String _shortname, String _description, int _dependencyId, boolean _enabled, boolean _default) {
+    public Sector(int id, String _name, String _shortname, String _description, int _dependencyId, boolean _enabled, boolean _default, String _imageName) {
         this.id = id;
         this._name = _name;
         this._shortname = _shortname;
@@ -25,6 +26,8 @@ public class Sector implements Parcelable{
         this._dependencyId = _dependencyId;
         this._enabled = _enabled;
         this._default = _default;
+        this._imageName = _imageName;
+
     }
 
     protected Sector(Parcel in) {
@@ -60,6 +63,14 @@ public class Sector implements Parcelable{
                 ", _enabled=" + _enabled +
                 ", _default=" + _default +
                 '}';
+    }
+
+    public String get_imageName() {
+        return _imageName;
+    }
+
+    public void set_imageName(String _imageName) {
+        this._imageName = _imageName;
     }
 
     public int getId() {

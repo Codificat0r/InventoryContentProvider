@@ -30,7 +30,7 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     @Override
     public void loadDependency() {
-        view.showProgressDialog();
+        view.showProgressDialog("Cargando dependencias . . .");
         listDependencyInteractorImpl.getAllDependencies();
     }
 

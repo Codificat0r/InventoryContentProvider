@@ -219,14 +219,17 @@ public class ListDependency extends ListFragment implements ListDependencyContra
     }
 
     @Override
-    public void showProgressDialog() {
-        progressDialog = CommonUtils.makeProgressDialog(getContext());
+    public void showProgressDialog(String message) {
+        progressDialog = CommonUtils.makeProgressDialog(getContext(), message);
         progressDialog.show();
     }
 
     @Override
     public void dismissProgressDialog() {
-        progressDialog.dismiss();
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
     }
 
     //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.

@@ -29,7 +29,7 @@ public interface ListDependencyContract {
 
         void onDatabaseError(Exception exception);
 
-        void showProgressDialog();
+        void showProgressDialog(String message);
 
         void dismissProgressDialog();
     }

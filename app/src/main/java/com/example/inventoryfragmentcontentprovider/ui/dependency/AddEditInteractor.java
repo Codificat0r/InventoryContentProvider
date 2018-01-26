@@ -24,4 +24,4 @@ public interface AddEditInteractor {
 
         void onDatabaseError(Exception exception);
     }
-    }
+}

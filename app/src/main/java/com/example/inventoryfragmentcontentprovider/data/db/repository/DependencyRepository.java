@@ -1,5 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
+import android.content.Context;
 import android.database.Cursor;
 
 import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;

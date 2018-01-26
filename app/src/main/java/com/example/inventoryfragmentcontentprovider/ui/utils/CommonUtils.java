@@ -35,9 +35,9 @@ public class CommonUtils {
         return matcher.matches();
     }
 
-    public static ProgressDialog makeProgressDialog(Context context) {
+    public static ProgressDialog makeProgressDialog(Context context, String message) {
         ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Conectando a base de datos . . .");
+        progressDialog.setMessage(message);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         return progressDialog;
     }

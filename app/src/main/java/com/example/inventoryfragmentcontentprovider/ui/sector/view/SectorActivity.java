@@ -1,5 +1,7 @@
 package com.example.inventoryfragmentcontentprovider.ui.sector.view;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.inventoryfragmentcontentprovider.R;
@@ -22,6 +25,7 @@ public class SectorActivity extends AppCompatActivity implements ContractSector.
     private ContractSector.Presenter presenter;
     //No implementamos la interfaz porque no queremos que la activity sea el escuchador, sino que este sea independiente.
     private SectorAdapter.OnItemClickListener listener;
+    private FloatingActionButton fab;
 
 
     @Override
@@ -40,7 +44,11 @@ public class SectorActivity extends AppCompatActivity implements ContractSector.
         listener = new SectorAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Sector sector) {
-                Toast.makeText(SectorActivity.this, "Se ha pulsado " + sector.get_name(), Toast.LENGTH_SHORT).show();
+                //EN CONSTRUCCION
+                Intent i = new Intent(SectorActivity.this, AddEditDeleteSectorActivity.class);
+                i.putExtra("sector", sector);
+                AddEditDeleteSectorActivity.mode = AddEditDeleteSectorActivity.MODE_EDIT;
+                startActivity(i);
             }
         };
         //if (savedInstanceState != null) {
@@ -54,6 +62,17 @@ public class SectorActivity extends AppCompatActivity implements ContractSector.
 
         //Pedimos el adapter al presenter
         presenter.RequestAdapter(listener);
+
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //EN CONSTRUCCION
+                Intent i = new Intent(SectorActivity.this, AddEditDeleteSectorActivity.class);
+                AddEditDeleteSectorActivity.mode = AddEditDeleteSectorActivity.MODE_ADD;
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -76,5 +95,11 @@ public class SectorActivity extends AppCompatActivity implements ContractSector.
     @Override
     public void setAdapter(SectorAdapter adapter) {
         recyclerSector.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.RequestAdapter(listener);
     }
 }

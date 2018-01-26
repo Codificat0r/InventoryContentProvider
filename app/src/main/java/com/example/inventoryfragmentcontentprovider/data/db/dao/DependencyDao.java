@@ -1,5 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.data.db.dao;
 
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +10,9 @@ import com.example.inventoryfragmentcontentprovider.data.db.InventoryContract;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
 import com.example.inventoryfragmentcontentprovider.data.db.repository.DependencyRepository;
+import com.example.inventoryfragmentcontentprovider.ui.dependency.ListDependency;
+import com.example.inventoryfragmentcontentprovider.ui.inventory.InventoryApplication;
+import com.example.inventoryfragmentcontentprovider.ui.utils.CommonUtils;
 
 import java.util.ArrayList;
 
@@ -23,37 +27,30 @@ public class DependencyDao {
      * @return
      */
     public ArrayList<Dependency> loadAll() {
+        ArrayList<Dependency> arrayList = new ArrayList<>();
 
-        final ArrayList<Dependency> arrayList = new ArrayList<>();
+        //EL selection y selectionArgs es el WHERE
+        SQLiteDatabase sqLiteDatabase = InventoryOpenHelper.getInstance().openDatabase();
+        Cursor cursor = sqLiteDatabase.query(InventoryContract.DependencyEntry.TABLE_NAME,
+                InventoryContract.DependencyEntry.ALL_COLUMNS,
+                null, null, null,null,
+                InventoryContract.DependencyEntry.DEFAULT_SORT, null);
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //EL selection y selectionArgs es el WHERE
-                SQLiteDatabase sqLiteDatabase = InventoryOpenHelper.getInstance().openDatabase();
-                Cursor cursor = sqLiteDatabase.query(InventoryContract.DependencyEntry.TABLE_NAME,
-                        InventoryContract.DependencyEntry.ALL_COLUMNS,
-                        null, null, null,null,
-                        InventoryContract.DependencyEntry.DEFAULT_SORT, null);
+        if (cursor.moveToFirst()) {
 
-                if (cursor.moveToFirst()) {
-                    do {
-                        Dependency tmp = new Dependency(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-                        arrayList.add(tmp);
-                        /*try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
-                    } while (cursor.moveToNext());
+            do {
+                Dependency tmp = new Dependency(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                arrayList.add(tmp);
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+            } while (cursor.moveToNext());
+        }
 
-                //La base de datos se cierra al final.
-                InventoryOpenHelper.getInstance().closeDatabase();
-            }
-        });
-
-        t.start();
+        //La base de datos se cierra al final.
+        InventoryOpenHelper.getInstance().closeDatabase();
 
         return arrayList;
     }
