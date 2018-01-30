@@ -102,5 +102,67 @@ public class InventoryContract {
 
     }
 
+    public static class ProductEntry implements BaseColumns {
+        public static final String TABLE_NAME = "product";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_SERIAL = "serial";
+        public static final String COLUMN_VENDOR = "vendor";
+        public static final String COLUMN_MODEL = "model";
+        public static final String COLUMN_DESCRIPTION = "description";
+        public static final String COLUMN_PRICE = "price";
+        public static final String COLUMN_BUYDATE = "buyDate";
+        public static final String COLUMN_URL = "url";
+        public static final String COLUMN_NOTES = "notes";
+        public static final String COLUMN_CATEGORIA = "categoria";
+        public static final String COLUMN_SUBCATEGORIA = "subcategoria";
+        public static final String COLUMN_TIPO = "tipo";
+        public static final String[] ALL_COLUMNS = {BaseColumns._ID, COLUMN_NAME, COLUMN_SERIAL, COLUMN_VENDOR, COLUMN_MODEL, COLUMN_DESCRIPTION, COLUMN_PRICE, COLUMN_BUYDATE, COLUMN_URL, COLUMN_NOTES, COLUMN_CATEGORIA, COLUMN_SUBCATEGORIA, COLUMN_TIPO};
 
+        public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s INTEGER NOT NULL, " +
+                        "%s INTEGER NOT NULL, " +
+                        "%s INTEGER NOT NULL, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)" +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)" +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)",
+                TABLE_NAME,
+                BaseColumns._ID,
+                COLUMN_NAME,
+                COLUMN_SERIAL,
+                COLUMN_VENDOR,
+                COLUMN_MODEL,
+                COLUMN_DESCRIPTION,
+                COLUMN_PRICE,
+                COLUMN_BUYDATE,
+                COLUMN_URL,
+                COLUMN_NOTES,
+                COLUMN_CATEGORIA,
+                COLUMN_SUBCATEGORIA,
+                COLUMN_TIPO,
+                COLUMN_CATEGORIA, CategoriaEntry.TABLE_NAME, CategoriaEntry._ID,
+                COLUMN_SUBCATEGORIA, SubcategoriaEntry.TABLE_NAME, CategoriaEntry._ID,
+                COLUMN_TIPO, TipoEntry.TABLE_NAME, TipoEntry._ID );
+
+    }
+
+    public static class CategoriaEntry implements BaseColumns {
+        public static final String TABLE_NAME = "categoria";
+    }
+
+    public static class SubcategoriaEntry implements BaseColumns {
+        public static final String TABLE_NAME = "subcategoria";
+    }
+
+    public static class TipoEntry implements BaseColumns {
+        public static final String TABLE_NAME = "tipo";
+    }
 }
