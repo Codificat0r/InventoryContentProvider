@@ -42,6 +42,9 @@ public class DependencyDao {
                 Dependency tmp = new Dependency(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
                 arrayList.add(tmp);
                 try {
+                    //EN EL INTERACTOR CUANDO SE PIDAN LOS DATOS SE PIDEN CON UN ASYNCTASK. SE DUERME
+                    //AQUI EL HILO DEL ASYNC TASK. SE MUESTRA EL PROGRESS DIALOG DICIENDOLE DESDE EL PRESENTER
+                    //A LA VISTA QUE LO HAGA
                     Thread.sleep(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

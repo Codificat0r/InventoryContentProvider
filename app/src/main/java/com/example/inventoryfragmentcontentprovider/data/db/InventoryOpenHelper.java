@@ -43,6 +43,12 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
         try {
             db.beginTransaction();
             //Creamos e insertamos los datos en las tablas.
+            db.execSQL(InventoryContract.CategoriaEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.CategoriaEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.TipoEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.TipoEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.ProductEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.ProductEntry.SQL_INSERT_ENTRIES);
             db.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
             db.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
             db.execSQL(InventoryContract.SectorEntry.SQL_CREATE_ENTRIES);
@@ -57,7 +63,7 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
 
     public synchronized SQLiteDatabase openDatabase() {
         if (openCounter.incrementAndGet() == 1) {
-            //Debido a que pedir que se abra la cierra y abre puede que haya otros hilos que
+            //Debiado a que pedir que se abra la cierra y abre puede que haya otros hilos que
             //esten trabajando ya con una y no es correcto que se cierre, debemos tener un control
             sqLiteDatabase = singleton.getWritableDatabase();
         }
@@ -77,8 +83,11 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
         try {
             db.beginTransaction();
             //Borramos las tablas en el orden correcto para despues poder volver a crearlas.
-            db.execSQL(InventoryContract.SectorEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.CategoriaEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.TipoEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.ProductEntry.SQL_DELETE_ENTRIES);
             db.execSQL(InventoryContract.DependencyEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.SectorEntry.SQL_DELETE_ENTRIES);
             onCreate(db);
             db.setTransactionSuccessful();
         } catch (SQLiteException e) {

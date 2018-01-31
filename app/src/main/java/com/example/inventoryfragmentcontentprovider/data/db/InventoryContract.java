@@ -131,8 +131,7 @@ public class InventoryContract {
                         "%s INTEGER NOT NULL, " +
                         "%s INTEGER NOT NULL, " +
                         "%s INTEGER NOT NULL, " +
-                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)" +
-                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)" +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT, " +
                         "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)",
                 TABLE_NAME,
                 BaseColumns._ID,
@@ -149,21 +148,64 @@ public class InventoryContract {
                 COLUMN_SUBCATEGORIA,
                 COLUMN_TIPO,
                 COLUMN_CATEGORIA, CategoriaEntry.TABLE_NAME, CategoriaEntry._ID,
-                COLUMN_SUBCATEGORIA, SubcategoriaEntry.TABLE_NAME, CategoriaEntry._ID,
                 COLUMN_TIPO, TipoEntry.TABLE_NAME, TipoEntry._ID );
+
+        public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
+
+        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) VALUES (%s,'%s','%s','%s','%s','%s','%s','%s','%s',%s,%s,%s),(%s,'%s','%s','%s','%s','%s','%s','%s','%s',%s,%s,%s),(%s,'%s','%s','%s','%s','%s','%s','%s','%s',%s,%s,%s)",
+                TABLE_NAME,
+                COLUMN_NAME,
+                COLUMN_SERIAL,
+                COLUMN_VENDOR,
+                COLUMN_MODEL,
+                COLUMN_DESCRIPTION,
+                COLUMN_PRICE,
+                COLUMN_BUYDATE,
+                COLUMN_URL,
+                COLUMN_NOTES,
+                COLUMN_CATEGORIA,
+                COLUMN_SUBCATEGORIA,
+                COLUMN_TIPO,
+                "Estantería","92SJFD02J2FJS","IKEA","MODELO1","Estantería montable . . .","75$","2018-02-11","www.ikea.com","Una estantería",1,1,1,
+                "Estantería","92SJFD02J2FJS","IKEA","MODELO1","Estantería montable . . .","75$","2018-02-11","www.ikea.com","Una estantería",2,2,2,
+                "Estantería","92SJFD02J2FJS","IKEA","MODELO1","Estantería montable . . .","75$","2018-02-11","www.ikea.com","Una estantería",3,3,3);
 
     }
 
     public static class CategoriaEntry implements BaseColumns {
         public static final String TABLE_NAME = "categoria";
-    }
+        public static final String COLUMN_NAME = "name";
 
-    public static class SubcategoriaEntry implements BaseColumns {
-        public static final String TABLE_NAME = "subcategoria";
+        public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "%s TEXT NOT NULL)",
+                TABLE_NAME,
+                BaseColumns._ID,
+                COLUMN_NAME);
+
+        public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
+
+        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s) VALUES ('%s'),('%s'),('%s')",
+                TABLE_NAME,
+                COLUMN_NAME,
+                "Sillas", "Estanterias", "Almacenaje");
     }
 
     public static class TipoEntry implements BaseColumns {
         public static final String TABLE_NAME = "tipo";
+        public static final String COLUMN_NAME = "name";
+
+        public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "%s TEXT NOT NULL)",
+                TABLE_NAME,
+                BaseColumns._ID,
+                COLUMN_NAME);
+
+        public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
+
+        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s) VALUES ('%s'),('%s'),('%s')",
+                TABLE_NAME,
+                COLUMN_NAME,
+                "Tipo 1", "Tipo 2", "Tipo 3");
     }
 
 }
