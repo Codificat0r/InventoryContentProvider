@@ -44,8 +44,10 @@ public class DependencyDao {
                 try {
                     //EN EL INTERACTOR CUANDO SE PIDAN LOS DATOS SE PIDEN CON UN ASYNCTASK. SE DUERME
                     //AQUI EL HILO DEL ASYNC TASK. SE MUESTRA EL PROGRESS DIALOG DICIENDOLE DESDE EL PRESENTER
-                    //A LA VISTA QUE LO HAGA
-                    Thread.sleep(300);
+                    //A LA VISTA QUE LO HAGA. DEBEMOS COGER DESDE EL FRAGMENT DE LA LISTA CON getActivity() LA
+                    //ACTIVIDAD PARA QUE AL ACTUALIZAR EL ADAPTER QUE ES UNA VISTA DESDE EL AsyncTask del INTERACTOR
+                    //podamos decirle correlo en el hilo de la UI. Activity.runOnUiThread.
+                    Thread.sleep(350);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

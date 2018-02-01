@@ -12,23 +12,28 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.login.LoginViewImpl"
-            android:theme="@style/LoginTheme"></activity>
-        <activity android:name=".SplashActivity"></activity>
+            android:theme="@style/LoginTheme" />
+        <activity android:name=".SplashActivity" />
         <activity android:name=".ui.inventory.InventoryActivity" />
-        <activity android:name=".DashboardActivity"></activity>
-        <activity android:name=".ui.product.ProductActivity" />
-        <activity android:name=".ui.dependency.DependencyActivity"></activity>
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".ui.product.vista.ProductDetailsActivity" />
+        <activity android:name=".ui.dependency.DependencyActivity" >
+
+        </activity>
         <activity android:name=".ui.sector.view.SectorActivity">
+
+        </activity>
+        <activity android:name=".ui.prefs.AccountSettingActivity" />
+        <activity android:name=".ui.prefs.GeneralSettingActivity" />
+        <activity android:name=".ui.about.AboutActivity" />
+        <activity android:name=".ui.sector.view.AddEditDeleteSectorActivity" />
+        <activity android:name=".ui.product.vista.ListaProductActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.prefs.AccountSettingActivity" />
-        <activity android:name=".ui.prefs.GeneralSettingActivity" />
-        <activity android:name=".ui.about.AboutActivity" />
-        <activity android:name=".ui.sector.view.AddEditDeleteSectorActivity"></activity>
     </application>
 
 </manifest>

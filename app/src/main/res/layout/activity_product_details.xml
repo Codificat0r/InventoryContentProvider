@@ -123,11 +123,11 @@
                 app:layout_constraintStart_toStartOf="@+id/txvModelo"
                 app:layout_constraintTop_toBottomOf="@+id/txvModelo" />
 
-            <Spinner
-                android:id="@+id/spnCategoria"
+            <TextView
+                android:id="@+id/txvCategoriaDato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/categorias"
+                tools:text="CATEGORIA 1"
                 app:layout_constraintBaseline_toBaselineOf="@+id/txvCategoria"
                 app:layout_constraintStart_toStartOf="@+id/edtModelo" />
 
@@ -140,13 +140,13 @@
                 app:layout_constraintStart_toStartOf="@+id/txvCategoria"
                 app:layout_constraintTop_toBottomOf="@+id/txvCategoria" />
 
-            <Spinner
-                android:id="@+id/spnSubcategoria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/subcategorias"
-                app:layout_constraintBaseline_toBaselineOf="@+id/txvSubcategoria"
-                app:layout_constraintStart_toStartOf="@+id/spnCategoria" />
+        <TextView
+            android:id="@+id/txvSubcategoriaDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/txvSubcategoria"
+            app:layout_constraintStart_toStartOf="@+id/edtModelo"
+            tools:text="SUBCATEGORIA 1" />
 
             <TextView
                 android:id="@+id/txvTipo"
@@ -157,13 +157,13 @@
                 app:layout_constraintStart_toStartOf="@+id/txvSubcategoria"
                 app:layout_constraintTop_toBottomOf="@+id/txvSubcategoria" />
 
-            <Spinner
-                android:id="@+id/spnTipo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/tipo"
-                app:layout_constraintBaseline_toBaselineOf="@+id/txvTipo"
-                app:layout_constraintStart_toStartOf="@+id/spnSubcategoria" />
+        <TextView
+            android:id="@+id/txvTipoDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/txvTipo"
+            app:layout_constraintStart_toStartOf="@+id/edtModelo"
+            tools:text="TIPO 1" />
 
             <TextView
                 android:id="@+id/txvDescripcion"

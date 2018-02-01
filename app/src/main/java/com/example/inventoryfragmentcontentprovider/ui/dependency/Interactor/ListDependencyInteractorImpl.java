@@ -1,10 +1,13 @@
 package com.example.inventoryfragmentcontentprovider.ui.dependency.Interactor;
 
+import android.os.AsyncTask;
+
 import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.repository.DependencyRepository;
 import com.example.inventoryfragmentcontentprovider.ui.dependency.ListDependencyInteractor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,7 +49,14 @@ public class ListDependencyInteractorImpl implements ListDependencyInteractor, I
 
     @Override
     public void getAllDependencies() {
-        listener.onSuccess(DependencyRepository.getInstance().getDependencies());
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                listener.onSuccess(DependencyRepository.getInstance().getDependencies());
+                return null;
+            }
+        }.execute();
+
     }
 
     @Override

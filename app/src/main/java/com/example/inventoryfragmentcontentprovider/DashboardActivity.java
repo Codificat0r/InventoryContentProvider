@@ -17,7 +17,7 @@ import com.example.inventoryfragmentcontentprovider.ui.inventory.InventoryActivi
 import com.example.inventoryfragmentcontentprovider.ui.inventory.InventoryApplication;
 import com.example.inventoryfragmentcontentprovider.ui.prefs.AccountSettingActivity;
 import com.example.inventoryfragmentcontentprovider.ui.prefs.GeneralSettingActivity;
-import com.example.inventoryfragmentcontentprovider.ui.product.ProductActivity;
+import com.example.inventoryfragmentcontentprovider.ui.product.vista.ProductDetailsActivity;
 import com.example.inventoryfragmentcontentprovider.ui.sector.view.SectorActivity;
 
 /**
@@ -129,7 +129,7 @@ public class DashboardActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.drawable.ic_product:
-                    intent = new Intent(DashboardActivity.this, ProductActivity.class);
+                    intent = new Intent(DashboardActivity.this, ProductDetailsActivity.class);
                     startActivity(intent);
                     break;
                 case R.drawable.ic_dependency:

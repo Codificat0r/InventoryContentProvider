@@ -234,9 +234,15 @@ public class ListDependency extends ListFragment implements ListDependencyContra
 
     //Este metodo es el que usa la vista para cargar los datos del repositorio a traves del MVP.
     @Override
-    public void showDependency(List<Dependency> list) {
-        adapter.clear();
-        adapter.addAll(list);
+    public void showDependency(final List<Dependency> list) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clear();
+                adapter.addAll(list);
+            }
+        });
+
     }
 
     @Override
