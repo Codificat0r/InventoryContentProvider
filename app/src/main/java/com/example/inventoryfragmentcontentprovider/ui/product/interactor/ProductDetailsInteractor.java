@@ -5,4 +5,5 @@ package com.example.inventoryfragmentcontentprovider.ui.product.interactor;
  */
 
 public interface ProductDetailsInteractor {
+    void viewProduct(int _id);
 }

@@ -2,8 +2,6 @@ package com.example.inventoryfragmentcontentprovider.data.db;
 
 import android.provider.BaseColumns;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
-
 import java.util.HashMap;
 
 /**
@@ -208,30 +206,31 @@ public class InventoryContract {
 
     public static class TipoEntry implements BaseColumns {
         public static final String TABLE_NAME = "tipo";
-        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_DESCRIPTION = "description";
 
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "%s TEXT NOT NULL)",
                 TABLE_NAME,
                 BaseColumns._ID,
-                COLUMN_NAME);
+                COLUMN_DESCRIPTION);
 
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
 
         public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s) VALUES ('%s'),('%s'),('%s')",
                 TABLE_NAME,
-                COLUMN_NAME,
+                COLUMN_DESCRIPTION,
                 "Tipo 1", "Tipo 2", "Tipo 3");
     }
 
     //Vamos a hacer un inner join para obtener el nombre del tipo y de la categoria en lugar de solo su id.
     public static class ProductJoinEntry implements BaseColumns {
+        //EStas columnas serian el "mote", el "as". Con el ProjectionMap le indicamos que mote corresponde a que columna real.
         public static final String TABLE_NAME = "product";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_SERIAL = "serial";
         public static final String COLUMN_VENDOR = "vendor";
         public static final String COLUMN_MODEL = "model";
-        public static final String COLUMN_DESCRIPTION = "description";
+        public static final String COLUMN_DESCRIPTION = "descriptionProducto";
         public static final String COLUMN_PRICE = "price";
         public static final String COLUMN_BUYDATE = "buyDate";
         public static final String COLUMN_URL = "url";
@@ -240,25 +239,37 @@ public class InventoryContract {
         public static final String COLUMN_CATEGORIA_ID = "categoria";
         public static final String COLUMN_CATEGORIA_NOMBRE = "categoriaNombre";
 
-        public static final String COLUMN_SUBCATEGORIA = "subcategoria";
-
         public static final String COLUMN_TIPO_ID = "tipo";
-        public static final String COLUMN_TIPO_DESCRIPCION = "tipoNombre";
+        public static final String COLUMN_TIPO_DESCRIPCION = "tipoDescripcion";
 
-        public static final String COLUMN_SECTOR = "sector";
-        public static final String COLUMN_DEPENDENCY = "dependency";
-        public static final String[] ALL_COLUMNS = {BaseColumns._ID, COLUMN_NAME, COLUMN_SERIAL, COLUMN_VENDOR, COLUMN_MODEL, COLUMN_DESCRIPTION, COLUMN_PRICE, COLUMN_BUYDATE, COLUMN_URL, COLUMN_NOTES, COLUMN_CATEGORIA_ID, COLUMN_CATEGORIA_NOMBRE, COLUMN_SUBCATEGORIA, COLUMN_TIPO_ID, COLUMN_TIPO_DESCRIPCION, COLUMN_SECTOR, COLUMN_DEPENDENCY};
+        public static final String[] ALL_COLUMNS = {BaseColumns._ID, COLUMN_NAME, COLUMN_SERIAL, COLUMN_VENDOR, COLUMN_MODEL, COLUMN_DESCRIPTION, COLUMN_PRICE, COLUMN_BUYDATE, COLUMN_URL, COLUMN_NOTES, COLUMN_CATEGORIA_ID, COLUMN_CATEGORIA_NOMBRE, COLUMN_TIPO_ID, COLUMN_TIPO_DESCRIPCION};
 
-        public static final String PRODUCT_INNER_CATEGORIA = String.format("%s INNER JOIN %s ON %s=%s.%s", ProductEntry.TABLE_NAME, CategoriaEntry.TABLE_NAME, COLUMN_CATEGORIA_ID, CategoriaEntry.TABLE_NAME, CategoriaEntry._ID);
-        public static final String PRODUCT_INNER_TIPO = String.format("%s INNER JOIN %s ON %s=%s.%s", ProductEntry.TABLE_NAME, TipoEntry.TABLE_NAME, COLUMN_TIPO_ID, TipoEntry.TABLE_NAME, TipoEntry._ID);
+        public static final String PRODUCT_INNER = String.format("%s INNER JOIN %s ON %s=%s.%s", ProductEntry.TABLE_NAME, CategoriaEntry.TABLE_NAME, COLUMN_CATEGORIA_ID, CategoriaEntry.TABLE_NAME, BaseColumns._ID) + String.format(" INNER JOIN %s ON %s=%s.%s", TipoEntry.TABLE_NAME, COLUMN_TIPO_ID, TipoEntry.TABLE_NAME, TipoEntry._ID);
 
         //Usaremos un mapa de proyecciones para ponerle "motes" a las distintas columnas que tengan los mismos nombres
         //para poder distinguirlas. Despues se lo pasaremos al query y nos pondrá los motes a las columnas.
         public static HashMap<String, String> sProductInnerProjectionMap;
         //Al ser estatico inicializamos en ambito static
         static {
+            //Hay que indicar el nombre de todas las columnas que vayamos a obtener aunque vayan a ser las mismas.
+            //1er parametro: nombre "mote" de la columna. 2do parametro es la columna real.
             sProductInnerProjectionMap = new HashMap<>();
             sProductInnerProjectionMap.put(ProductEntry._ID, ProductEntry.TABLE_NAME + "." + ProductEntry._ID);
+            //Por ejemplo, el nombre se va a repetir, entonces debemos indicar de tal tabla tal nombre de columna va a corresponderse
+            //con el que hemos puesto aqui.
+            sProductInnerProjectionMap.put(COLUMN_NAME, ProductEntry.TABLE_NAME+"."+ProductEntry.COLUMN_NAME);
+            sProductInnerProjectionMap.put(COLUMN_SERIAL, ProductEntry.COLUMN_SERIAL);
+            sProductInnerProjectionMap.put(COLUMN_VENDOR, ProductEntry.COLUMN_VENDOR);
+            sProductInnerProjectionMap.put(COLUMN_MODEL, ProductEntry.COLUMN_MODEL);
+            sProductInnerProjectionMap.put(COLUMN_DESCRIPTION, ProductEntry.TABLE_NAME + "." + ProductEntry.COLUMN_DESCRIPTION);
+            sProductInnerProjectionMap.put(COLUMN_PRICE, ProductEntry.COLUMN_PRICE);
+            sProductInnerProjectionMap.put(COLUMN_BUYDATE, ProductEntry.COLUMN_BUYDATE);
+            sProductInnerProjectionMap.put(COLUMN_URL, ProductEntry.COLUMN_URL);
+            sProductInnerProjectionMap.put(COLUMN_NOTES, ProductEntry.COLUMN_NOTES);
+            sProductInnerProjectionMap.put(COLUMN_CATEGORIA_ID, CategoriaEntry.TABLE_NAME+"."+CategoriaEntry._ID);
+            sProductInnerProjectionMap.put(COLUMN_CATEGORIA_NOMBRE, CategoriaEntry.TABLE_NAME+"."+CategoriaEntry.COLUMN_NAME);
+            sProductInnerProjectionMap.put(COLUMN_TIPO_ID, TipoEntry.TABLE_NAME+"."+TipoEntry._ID);
+            sProductInnerProjectionMap.put(COLUMN_TIPO_DESCRIPCION, TipoEntry.TABLE_NAME+"."+TipoEntry.COLUMN_DESCRIPTION);
         }
     }
 }

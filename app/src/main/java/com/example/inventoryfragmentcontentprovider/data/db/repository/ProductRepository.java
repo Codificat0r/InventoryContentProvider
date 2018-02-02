@@ -5,6 +5,7 @@ import com.example.inventoryfragmentcontentprovider.data.db.dao.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.dao.ProductDao;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
+import com.example.inventoryfragmentcontentprovider.data.db.model.ProductView;
 
 import java.util.ArrayList;
 
@@ -79,6 +80,10 @@ public class ProductRepository {
     public ArrayList<Product> getProducts() {
         ArrayList<Product> products = productDao.loadAll();
         return products;
+    }
+
+    public ProductView getProductViewInfo(int _idProducto) {
+        return productDao.getProductViewInnerJoin(_idProducto);
     }
 
     /*

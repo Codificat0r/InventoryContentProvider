@@ -1,5 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.product.vista;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class ListaProductActivity extends AppCompatActivity implements ContractL
     private ListView lstvProduct;
     private ArrayAdapter<Product> adapter;
     private ContractListaProduct.Presenter presenter;
+    public static final String PRODUCTBUNDLETAG = "product";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,9 @@ public class ListaProductActivity extends AppCompatActivity implements ContractL
         lstvProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ListaProductActivity.this, "Has hecho click sobre el elemento \"" + adapter.getItem(i).getName() + "\" con id " + adapter.getItem(i).get_id(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(ListaProductActivity.this, ProductDetailsActivity.class);
+                intent.putExtra(PRODUCTBUNDLETAG, adapter.getItem(i).get_id());
+                startActivity(intent);
             }
         });
     }
