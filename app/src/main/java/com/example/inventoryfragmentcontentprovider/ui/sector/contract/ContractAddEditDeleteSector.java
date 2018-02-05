@@ -1,5 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.sector.contract;
 
+import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
 
 import java.util.ArrayList;
@@ -11,11 +12,13 @@ import java.util.ArrayList;
 public interface ContractAddEditDeleteSector {
     interface View {
         void onSuccess();
+        void onDependenciesLoaded(ArrayList<Dependency> dependencies);
     }
 
     interface Presenter {
         void delete(Sector sector);
         void addSector(Sector sector);
         void updateSector(Sector sector);
+        void cargarSpinnerDependencies();
     }
 }

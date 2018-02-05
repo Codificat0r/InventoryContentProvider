@@ -1,10 +1,12 @@
 package com.example.inventoryfragmentcontentprovider.ui.sector.presenter;
 
+import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
 import com.example.inventoryfragmentcontentprovider.ui.sector.contract.ContractAddEditDeleteSector;
 import com.example.inventoryfragmentcontentprovider.ui.sector.interactor.AddEditDeleteSectorInteractor;
 import com.example.inventoryfragmentcontentprovider.ui.sector.interactor.AddEditDeleteSectorInteractorImpl;
-import com.example.inventoryfragmentcontentprovider.ui.sector.view.AddEditDeleteSectorActivity;
+import com.example.inventoryfragmentcontentprovider.ui.sector.interactor.DependencySpinnerInteractor;
+import com.example.inventoryfragmentcontentprovider.ui.sector.interactor.DependencySpinnerInteractorImpl;
 
 import java.util.ArrayList;
 
@@ -12,32 +14,44 @@ import java.util.ArrayList;
  * Created by usuario on 26/01/18.
  */
 
-public class AddEditDeleteSectorPresenter implements ContractAddEditDeleteSector.Presenter, AddEditDeleteSectorInteractorImpl.OnThingFinishedListener {
+public class AddEditDeleteSectorPresenter implements ContractAddEditDeleteSector.Presenter, AddEditDeleteSectorInteractorImpl.OnThingFinishedListener, DependencySpinnerInteractorImpl.OnActionFinishedListener{
     private ContractAddEditDeleteSector.View view;
-    private AddEditDeleteSectorInteractor interactor;
+    private AddEditDeleteSectorInteractor interactorSector;
+    private DependencySpinnerInteractor interactorDependency;
 
     public AddEditDeleteSectorPresenter(ContractAddEditDeleteSector.View view) {
         this.view = view;
-        this.interactor = new AddEditDeleteSectorInteractorImpl(this);
+        this.interactorSector = new AddEditDeleteSectorInteractorImpl(this);
+        this.interactorDependency = new DependencySpinnerInteractorImpl(this);
     }
 
     @Override
     public void delete(Sector sector) {
-        interactor.delete(sector);
+        interactorSector.delete(sector);
     }
 
     @Override
     public void addSector(Sector sector) {
-        interactor.addSector(sector);
+        interactorSector.addSector(sector);
     }
 
     @Override
     public void updateSector(Sector sector) {
-        interactor.updateSector(sector);
+        interactorSector.updateSector(sector);
+    }
+
+    @Override
+    public void cargarSpinnerDependencies() {
+        interactorDependency.getDependencies();
     }
 
     @Override
     public void onSuccess() {
         view.onSuccess();
+    }
+
+    @Override
+    public void onDependenciesObtained(ArrayList<Dependency> dependencies) {
+        view.onDependenciesLoaded(dependencies);
     }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -31,6 +32,7 @@ public class AddEditDeleteSectorActivity extends AppCompatActivity implements Co
     private Spinner spnDependencia;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private ArrayAdapter<Dependency> simpleSpinnerAdapter;
 
     private ContractAddEditDeleteSector.Presenter presenter;
 
@@ -40,8 +42,6 @@ public class AddEditDeleteSectorActivity extends AppCompatActivity implements Co
         setContentView(R.layout.activity_add_edit_delete_sector);
 
         presenter = new AddEditDeleteSectorPresenter(this);
-
-
 
         edtNombre = findViewById(R.id.edtNombre);
         edtShortname = findViewById(R.id.edtNombreCorto);
@@ -53,6 +53,8 @@ public class AddEditDeleteSectorActivity extends AppCompatActivity implements Co
 
         setSupportActionBar(toolbar);
 
+        presenter.cargarSpinnerDependencies();
+
 
         if (mode == MODE_EDIT) {
             extraSector = (Sector) getIntent().getExtras().getParcelable("sector");
@@ -60,6 +62,12 @@ public class AddEditDeleteSectorActivity extends AppCompatActivity implements Co
             edtShortname.setText(extraSector.get_shortname());
             edtDescripcion.setText(extraSector.get_description());
             edtImageName.setText(extraSector.get_imageName());
+            for (int i = 0; i < simpleSpinnerAdapter.getCount(); i++) {
+                Dependency tmp = simpleSpinnerAdapter.getItem(i);
+                if (tmp.get_ID() == extraSector.get_dependencyId()) {
+                    spnDependencia.setSelection(i);
+                }
+            }
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,5 +101,16 @@ public class AddEditDeleteSectorActivity extends AppCompatActivity implements Co
     @Override
     public void onSuccess() {
         finish();
+    }
+
+    @Override
+    public void onDependenciesLoaded(ArrayList<Dependency> dependencies) {
+        if (simpleSpinnerAdapter == null)
+            simpleSpinnerAdapter = new ArrayAdapter<Dependency>(this, android.R.layout.simple_spinner_item, dependencies);
+        else {
+            simpleSpinnerAdapter.clear();
+            simpleSpinnerAdapter.addAll(dependencies);
+        }
+        spnDependencia.setAdapter(simpleSpinnerAdapter);
     }
 }
