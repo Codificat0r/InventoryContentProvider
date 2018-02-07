@@ -1,21 +1,15 @@
 package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
-import android.content.Context;
-import android.database.Cursor;
-
+import com.example.inventoryfragmentcontentprovider.data.base.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;
-import com.example.inventoryfragmentcontentprovider.data.db.dao.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
-import com.example.inventoryfragmentcontentprovider.ui.utils.comparator.IdComparator;
-import com.example.inventoryfragmentcontentprovider.ui.utils.comparator.NameComparator;
+import com.example.inventoryfragmentcontentprovider.data.provider.dao.DependencyDaoImpl;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 
 /**
  * Clase que almacenará diferentes dependencias OBTENIDAS DEL DAO. Es el repository el que
- * obtendrá los datos de la database local y la remota. Habrá un DependencyDao y un DependencyDaoWebService.
+ * obtendrá los datos de la database local y la remota. Habrá un DependencyDaoImpl y un DependencyDaoWebService.
  * Este ultimo trabajará lanzando consultas a la API REST o algo asi, es decir, trabajará con la base
  * de datos remota. En un MVP Clean el repositorio si o si deberia devolver un ArrayList y no un cursor.
  * Vamos a hacerlo con Cursor y con ArrayList para ver los diferentes ejemplos.
@@ -49,7 +43,9 @@ public class DependencyRepository {
 
     private DependencyRepository() {
         //CADA REPOSITORIO TIENE SU PROPIO DAO.
-        this.dependencyDao = new DependencyDao();
+        //Ahora mismo tenemos el Dao del ContentProvider. Si necesitamos
+        //usar el otro dao de DB, cambiamos el IMPORT por el import de la ruta del otro DAO.
+        this.dependencyDao = new DependencyDaoImpl();
     }
 
     /*
@@ -87,6 +83,7 @@ public class DependencyRepository {
 
     public ArrayList<Dependency> getDependencies() {
         ArrayList<Dependency> dependencies = dependencyDao.loadAll();
+
         return dependencies;
     }
 

@@ -1,6 +1,5 @@
 package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
-import com.example.inventoryfragmentcontentprovider.data.db.dao.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.model.User;
 
 import java.util.ArrayList;

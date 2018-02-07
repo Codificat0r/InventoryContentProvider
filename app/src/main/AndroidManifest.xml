@@ -34,6 +34,10 @@
         <activity android:name=".ui.product.vista.ListaProductActivity">
 
         </activity>
+        <!-- Registramos el provider -->
+        <provider
+            android:authorities="com.example.inventory"
+            android:name=".data.provider.InventoryProvider"/>
     </application>
 
 </manifest>

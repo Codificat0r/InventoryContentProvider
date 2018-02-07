@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
+import com.example.inventoryfragmentcontentprovider.data.base.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryContract;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  * Created by usuario on 22/01/18.
  */
 
-public class DependencyDao {
+public class DependencyDaoImpl implements DependencyDao {
 
     /**
      * Método que devuelve un cursor con todas las dependencias de la base de datos.

@@ -1,9 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
-import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;
-import com.example.inventoryfragmentcontentprovider.data.db.dao.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.dao.ProductDao;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
 import com.example.inventoryfragmentcontentprovider.data.db.model.ProductView;
 

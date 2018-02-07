@@ -12,7 +12,8 @@ import java.util.HashMap;
  */
 
 public final class InventoryProviderContract {
-    private static final String AUTHORITY = "com.example.inventory";
+    //La autoridad debe ser unica por eso usamos algo que siempre es unico como el ID de nuestra app.
+    public static final String AUTHORITY = "com.example.inventory";
     //Debe tener un protocolo para ser una uri valida. Será content nuestro protocolo.
     public static final Uri AUTHORITY_URI = Uri.parse("content://"+AUTHORITY);
 
@@ -51,6 +52,7 @@ public final class InventoryProviderContract {
     public static class Product implements BaseColumns {
         public static final String CONTENT_PATH="product";
         //La barra (/) ya la mete el mismo metodo de Uri.
+        //Ya no hablamos de COLUMN_.. sino de datos directos que vamos a proporcionar a quien nos lo pida.
         public static final Uri CONTENT_URI = Uri.withAppendedPath(InventoryProviderContract.AUTHORITY_URI, CONTENT_PATH);
         public static final String NAME = "name";
         public static final String SERIAL = "serial";
@@ -76,19 +78,23 @@ public final class InventoryProviderContract {
             sProductInnerProjectionMap.put(InventoryContract.ProductEntry._ID, InventoryContract.ProductEntry.TABLE_NAME + "." + InventoryContract.ProductEntry._ID);
             //Por ejemplo, el nombre se va a repetir, entonces debemos indicar de tal tabla tal nombre de columna va a corresponderse
             //con el que hemos puesto aqui.
-            sProductInnerProjectionMap.put(NAME, InventoryContract.ProductEntry.TABLE_NAME+"."+ InventoryContract.ProductEntry.NAME);
-            sProductInnerProjectionMap.put(SERIAL, InventoryContract.ProductEntry.SERIAL);
-            sProductInnerProjectionMap.put(VENDOR, InventoryContract.ProductEntry.VENDOR);
-            sProductInnerProjectionMap.put(MODEL, InventoryContract.ProductEntry.MODEL);
-            sProductInnerProjectionMap.put(DESCRIPTION, InventoryContract.ProductEntry.TABLE_NAME + "." + InventoryContract.ProductEntry.DESCRIPTION);
-            sProductInnerProjectionMap.put(PRICE, InventoryContract.ProductEntry.PRICE);
-            sProductInnerProjectionMap.put(BUYDATE, InventoryContract.ProductEntry.BUYDATE);
-            sProductInnerProjectionMap.put(URL, InventoryContract.ProductEntry.URL);
-            sProductInnerProjectionMap.put(NOTES, InventoryContract.ProductEntry.NOTES);
+
+            //Seguimos cojiendo los nombres de InventoryContract para que coincida con los de la base de datos, ya que aqui
+            //en el ContentProvider podemos ponerle el nombre que queramos, no tiene por que coincidir con el de la base
+            //de datos.
+            sProductInnerProjectionMap.put(NAME, InventoryContract.ProductEntry.TABLE_NAME+"."+ InventoryContract.ProductEntry.COLUMN_NAME);
+            sProductInnerProjectionMap.put(SERIAL, InventoryContract.ProductEntry.COLUMN_SERIAL);
+            sProductInnerProjectionMap.put(VENDOR, InventoryContract.ProductEntry.COLUMN_VENDOR);
+            sProductInnerProjectionMap.put(MODEL, InventoryContract.ProductEntry.COLUMN_MODEL);
+            sProductInnerProjectionMap.put(DESCRIPTION, InventoryContract.ProductEntry.TABLE_NAME + "." + InventoryContract.ProductEntry.COLUMN_DESCRIPTION);
+            sProductInnerProjectionMap.put(PRICE, InventoryContract.ProductEntry.COLUMN_PRICE);
+            sProductInnerProjectionMap.put(BUYDATE, InventoryContract.ProductEntry.COLUMN_BUYDATE);
+            sProductInnerProjectionMap.put(URL, InventoryContract.ProductEntry.COLUMN_URL);
+            sProductInnerProjectionMap.put(NOTES, InventoryContract.ProductEntry.COLUMN_NOTES);
             sProductInnerProjectionMap.put(CATEGORIA_ID, InventoryContract.CategoriaEntry.TABLE_NAME+"."+ InventoryContract.CategoriaEntry._ID);
-            sProductInnerProjectionMap.put(CATEGORIA_NOMBRE, InventoryContract.CategoriaEntry.TABLE_NAME+"."+ InventoryContract.CategoriaEntry.NAME);
+            sProductInnerProjectionMap.put(CATEGORIA_NOMBRE, InventoryContract.CategoriaEntry.TABLE_NAME+"."+ InventoryContract.CategoriaEntry.COLUMN_NAME);
             sProductInnerProjectionMap.put(TIPO_ID, InventoryContract.TipoEntry.TABLE_NAME+"."+ InventoryContract.TipoEntry._ID);
-            sProductInnerProjectionMap.put(TIPO_DESCRIPCION, InventoryContract.TipoEntry.TABLE_NAME+"."+ InventoryContract.TipoEntry.DESCRIPTION);
+            sProductInnerProjectionMap.put(TIPO_DESCRIPCION, InventoryContract.TipoEntry.TABLE_NAME+"."+ InventoryContract.TipoEntry.COLUMN_DESCRIPTION);
         }
     }
 
