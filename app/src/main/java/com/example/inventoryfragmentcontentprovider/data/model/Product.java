@@ -1,4 +1,4 @@
-package com.example.inventoryfragmentcontentprovider.data.db.model;
+package com.example.inventoryfragmentcontentprovider.data.model;
 
 /**
  * Created by usuario on 30/01/18.

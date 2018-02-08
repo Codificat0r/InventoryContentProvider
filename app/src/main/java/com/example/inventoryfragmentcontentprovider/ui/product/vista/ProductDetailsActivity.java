@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.inventoryfragmentcontentprovider.R;
-import com.example.inventoryfragmentcontentprovider.data.db.model.ProductView;
+import com.example.inventoryfragmentcontentprovider.data.model.ProductView;
 import com.example.inventoryfragmentcontentprovider.ui.product.contract.ContractProductDetails;
 import com.example.inventoryfragmentcontentprovider.ui.product.presenter.ProductDetailsPresenter;
 

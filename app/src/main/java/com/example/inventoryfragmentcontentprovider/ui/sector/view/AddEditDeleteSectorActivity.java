@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.inventoryfragmentcontentprovider.R;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Sector;
 import com.example.inventoryfragmentcontentprovider.ui.sector.contract.ContractAddEditDeleteSector;
 import com.example.inventoryfragmentcontentprovider.ui.sector.presenter.AddEditDeleteSectorPresenter;
 

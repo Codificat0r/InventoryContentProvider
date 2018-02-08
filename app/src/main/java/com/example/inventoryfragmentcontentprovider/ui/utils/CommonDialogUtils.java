@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
 import com.example.inventoryfragmentcontentprovider.R;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.ui.dependency.contract.ListDependencyContract;
 
 /**

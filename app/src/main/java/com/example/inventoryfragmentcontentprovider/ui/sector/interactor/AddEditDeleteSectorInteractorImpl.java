@@ -1,9 +1,7 @@
 package com.example.inventoryfragmentcontentprovider.ui.sector.interactor;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
-import com.example.inventoryfragmentcontentprovider.data.db.repository.SectorRepository;
-
-import java.util.ArrayList;
+import com.example.inventoryfragmentcontentprovider.data.model.Sector;
+import com.example.inventoryfragmentcontentprovider.data.repository.SectorRepository;
 
 /**
  * Created by usuario on 26/01/18.

@@ -1,6 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.product.contract;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
+import com.example.inventoryfragmentcontentprovider.data.model.Product;
 
 import java.util.ArrayList;
 

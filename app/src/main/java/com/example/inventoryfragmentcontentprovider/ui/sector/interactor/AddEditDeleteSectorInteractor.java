@@ -1,6 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.sector.interactor;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
+import com.example.inventoryfragmentcontentprovider.data.model.Sector;
 
 /**
  * Created by usuario on 26/01/18.

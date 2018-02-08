@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.inventoryfragmentcontentprovider.R;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 import java.util.ArrayList;

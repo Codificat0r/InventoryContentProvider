@@ -1,6 +1,6 @@
-package com.example.inventoryfragmentcontentprovider.data.db.repository;
+package com.example.inventoryfragmentcontentprovider.data.repository;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.User;
+import com.example.inventoryfragmentcontentprovider.data.model.User;
 
 import java.util.ArrayList;
 

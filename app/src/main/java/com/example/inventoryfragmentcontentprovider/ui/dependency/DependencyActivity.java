@@ -8,9 +8,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.inventoryfragmentcontentprovider.R;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
-import com.example.inventoryfragmentcontentprovider.data.db.repository.DependencyRepository;
+import com.example.inventoryfragmentcontentprovider.data.repository.DependencyRepository;
 import com.example.inventoryfragmentcontentprovider.ui.utils.AddEdit;
 
 /**

@@ -1,7 +1,7 @@
 package com.example.inventoryfragmentcontentprovider;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.User;
-import com.example.inventoryfragmentcontentprovider.data.db.repository.UserRepository;
+import com.example.inventoryfragmentcontentprovider.data.model.User;
+import com.example.inventoryfragmentcontentprovider.data.repository.UserRepository;
 import com.example.inventoryfragmentcontentprovider.ui.utils.CommonUtils;
 
 import org.junit.Before;

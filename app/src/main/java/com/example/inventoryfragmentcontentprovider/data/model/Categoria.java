@@ -1,14 +1,14 @@
-package com.example.inventoryfragmentcontentprovider.data.db.model;
+package com.example.inventoryfragmentcontentprovider.data.model;
 
 /**
  * Created by usuario on 30/01/18.
  */
 
-public class Tipo {
+public class Categoria {
     private int _id;
     private String name;
 
-    public Tipo(int _id, String name) {
+    public Categoria(int _id, String name) {
         this._id = _id;
         this.name = name;
     }

@@ -1,13 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.data.base;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
-
-import com.example.inventoryfragmentcontentprovider.data.db.InventoryContract;
-import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
 
 import java.util.ArrayList;
 

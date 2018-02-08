@@ -1,26 +1,31 @@
-package com.example.inventoryfragmentcontentprovider.data.db.repository;
+package com.example.inventoryfragmentcontentprovider.data.repository;
 
-import com.example.inventoryfragmentcontentprovider.data.db.dao.ProductDao;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
-import com.example.inventoryfragmentcontentprovider.data.db.model.ProductView;
+import com.example.inventoryfragmentcontentprovider.data.base.DependencyDao;
+import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.provider.dao.DependencyDaoImpl;
 
 import java.util.ArrayList;
 
 /**
- * Clase que almacenará diferentes productos.
+ * Clase que almacenará diferentes dependencias OBTENIDAS DEL DAO. Es el repository el que
+ * obtendrá los datos de la database local y la remota. Habrá un DependencyDaoImpl y un DependencyDaoWebService.
+ * Este ultimo trabajará lanzando consultas a la API REST o algo asi, es decir, trabajará con la base
+ * de datos remota. En un MVP Clean el repositorio si o si deberia devolver un ArrayList y no un cursor.
+ * Vamos a hacerlo con Cursor y con ArrayList para ver los diferentes ejemplos.
  * @author Carlos Cruz Domínguez
  */
 
-public class ProductRepository {
+public class DependencyRepository {
 
-    private static ProductDao productDao;
+    private static DependencyDao dependencyDao;
 
     /*
     Declaración
      */
     //Constructor privado y hacemos que esta clase se cree a ella misma para asegurar de que solo hay un objeto
     //de la misma.
-    private static ProductRepository productRepository;
+    private static DependencyRepository dependencyRepository;
 
     public static boolean cargadosTodos;
 
@@ -32,24 +37,26 @@ public class ProductRepository {
      */
 
     static {
-        productRepository = new ProductRepository();
+        dependencyRepository = new DependencyRepository();
         cargadosTodos = false;
     }
 
-    private ProductRepository() {
+    private DependencyRepository() {
         //CADA REPOSITORIO TIENE SU PROPIO DAO.
-        this.productDao = new ProductDao();
+        //Ahora mismo tenemos el Dao del ContentProvider. Si necesitamos
+        //usar el otro dao de DB, cambiamos el IMPORT por el import de la ruta del otro DAO.
+        this.dependencyDao = new DependencyDaoImpl();
     }
 
     /*
     Métodos
      */
 
-    public static ProductRepository getInstance() {
+    public static DependencyRepository getInstance() {
         //Otra opción para inicializar es esta.
-        if (productRepository == null)
-            return productRepository;
-        return productRepository;
+        if (dependencyRepository == null)
+            return dependencyRepository;
+        return dependencyRepository;
     }
 
 
@@ -74,20 +81,16 @@ public class ProductRepository {
 
 
 
-    public ArrayList<Product> getProducts() {
-        ArrayList<Product> products = productDao.loadAll();
-        return products;
+    public ArrayList<Dependency> getDependencies() {
+        ArrayList<Dependency> dependencies = dependencyDao.loadAll();
+
+        return dependencies;
     }
 
-    public ProductView getProductViewInfo(int _idProducto) {
-        return productDao.getProductViewInnerJoin(_idProducto);
-    }
-
-    /*
-    public long deleteProduct(Dependency dependency, InteractorCallback callback) {
+    public long deleteDependency(Dependency dependency, InteractorCallback callback) {
         //AHORA CON DAO
         try {
-            long count = productDao.delete(dependency);
+            long count = dependencyDao.delete(dependency);
             if (count == 0)
                 callback.onError(new Error("No se ha podido eliminar la dependencia " + dependency.getName() + " de la base de datos"));
             else
@@ -97,19 +100,17 @@ public class ProductRepository {
             callback.onError(new Exception("Error: " + e.getMessage(), e));
         }
         return 0;
-        return 0;
     }
 
-    public long addProduct(Dependency dependency) {
-        //return productDao.add(dependency);
-        return 0;
+    public long addDependency(Dependency dependency) {
+        return dependencyDao.add(dependency);
     }
 
     //Hay otra forma de vincular el repositorio con el interactor a traves del lanzamiento de excepciones con
     //throws y que se la lance la excepcion al repositorio y alli la capturamos y que avise a la vista.
-    public long updateProduct(Dependency dependency, InteractorCallback callback) {
+    public long updateDependency(Dependency dependency, InteractorCallback callback) {
         try {
-            long count = productDao.update(dependency);
+            long count = dependencyDao.update(dependency);
             if (count == 0)
                 callback.onError(new Error("No se ha podido editar la dependencia " + dependency.getName() + " en la base de datos"));
             else
@@ -122,7 +123,7 @@ public class ProductRepository {
     }
 
     public boolean existsDependency(Dependency dependency) {
-        return productDao.exists(dependency);
+        return dependencyDao.exists(dependency);
     }
 
     public void orderByName() {
@@ -131,5 +132,5 @@ public class ProductRepository {
 
     public void orderById() {
 
-    }*/
+    }
 }

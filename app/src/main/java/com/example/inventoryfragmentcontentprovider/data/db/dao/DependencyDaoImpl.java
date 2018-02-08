@@ -1,6 +1,5 @@
 package com.example.inventoryfragmentcontentprovider.data.db.dao;
 
-import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,12 +7,8 @@ import android.provider.BaseColumns;
 
 import com.example.inventoryfragmentcontentprovider.data.base.DependencyDao;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryContract;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
-import com.example.inventoryfragmentcontentprovider.data.db.repository.DependencyRepository;
-import com.example.inventoryfragmentcontentprovider.ui.dependency.ListDependency;
-import com.example.inventoryfragmentcontentprovider.ui.inventory.InventoryApplication;
-import com.example.inventoryfragmentcontentprovider.ui.utils.CommonUtils;
 
 import java.util.ArrayList;
 

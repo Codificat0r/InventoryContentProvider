@@ -5,18 +5,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
+import com.example.inventoryfragmentcontentprovider.data.base.SectorDao;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryContract;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
+import com.example.inventoryfragmentcontentprovider.data.model.Sector;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by usuario on 25/01/18.
  */
 
-public class SectorDao {
+public class SectorDaoImpl implements SectorDao {
     public ArrayList<Sector> loadAll() {
         ArrayList<Sector> sectors = new ArrayList<>();
         boolean enabled = true;

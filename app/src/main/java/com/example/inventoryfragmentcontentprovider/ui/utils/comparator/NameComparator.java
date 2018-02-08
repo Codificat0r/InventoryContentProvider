@@ -1,6 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.utils.comparator;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
 
 import java.util.Comparator;
 

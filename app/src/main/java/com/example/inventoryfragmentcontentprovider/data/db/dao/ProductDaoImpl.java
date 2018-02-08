@@ -6,10 +6,11 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+import com.example.inventoryfragmentcontentprovider.data.base.ProductDao;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryContract;
 import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
-import com.example.inventoryfragmentcontentprovider.data.db.model.ProductView;
+import com.example.inventoryfragmentcontentprovider.data.model.Product;
+import com.example.inventoryfragmentcontentprovider.data.model.ProductView;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  * Created by usuario on 1/02/18.
  */
 
-public class ProductDao {
+public class ProductDaoImpl implements ProductDao {
     public ArrayList<Product> loadAll() {
         ArrayList<Product> products = new ArrayList<>();
 

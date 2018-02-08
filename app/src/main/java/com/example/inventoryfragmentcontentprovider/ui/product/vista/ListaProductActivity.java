@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.inventoryfragmentcontentprovider.R;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
+import com.example.inventoryfragmentcontentprovider.data.model.Product;
 import com.example.inventoryfragmentcontentprovider.ui.product.contract.ContractListaProduct;
 import com.example.inventoryfragmentcontentprovider.ui.product.presenter.ListaProductPresenter;
 

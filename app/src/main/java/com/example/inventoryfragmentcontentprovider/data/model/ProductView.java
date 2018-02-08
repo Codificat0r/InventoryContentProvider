@@ -1,4 +1,4 @@
-package com.example.inventoryfragmentcontentprovider.data.db.model;
+package com.example.inventoryfragmentcontentprovider.data.model;
 
 /**
  * Contendrá la información del inner join de product con categoria y tipo ya que necesitamos obtener

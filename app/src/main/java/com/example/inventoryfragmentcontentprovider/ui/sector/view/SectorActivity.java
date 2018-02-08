@@ -10,11 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.inventoryfragmentcontentprovider.R;
 import com.example.inventoryfragmentcontentprovider.adapter.SectorAdapter;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
+import com.example.inventoryfragmentcontentprovider.data.model.Sector;
 import com.example.inventoryfragmentcontentprovider.ui.sector.contract.ContractSector;
 import com.example.inventoryfragmentcontentprovider.ui.sector.presenter.SectorPresenter;
 

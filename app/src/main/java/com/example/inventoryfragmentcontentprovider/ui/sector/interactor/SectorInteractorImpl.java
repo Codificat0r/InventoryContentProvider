@@ -1,7 +1,7 @@
 package com.example.inventoryfragmentcontentprovider.ui.sector.interactor;
 
 import com.example.inventoryfragmentcontentprovider.adapter.SectorAdapter;
-import com.example.inventoryfragmentcontentprovider.data.db.repository.SectorRepository;
+import com.example.inventoryfragmentcontentprovider.data.repository.SectorRepository;
 
 /**
  * Created by carlos on 10/12/2017.

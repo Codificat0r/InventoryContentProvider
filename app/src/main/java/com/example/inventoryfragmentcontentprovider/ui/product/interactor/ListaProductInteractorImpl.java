@@ -1,10 +1,7 @@
 package com.example.inventoryfragmentcontentprovider.ui.product.interactor;
 
-import android.database.sqlite.SQLiteDatabase;
-
-import com.example.inventoryfragmentcontentprovider.data.db.InventoryOpenHelper;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
-import com.example.inventoryfragmentcontentprovider.data.db.repository.ProductRepository;
+import com.example.inventoryfragmentcontentprovider.data.model.Product;
+import com.example.inventoryfragmentcontentprovider.data.repository.ProductRepository;
 
 import java.util.ArrayList;
 

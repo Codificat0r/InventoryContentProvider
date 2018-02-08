@@ -1,7 +1,6 @@
 package com.example.inventoryfragmentcontentprovider.ui.product.presenter;
 
-import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
-import com.example.inventoryfragmentcontentprovider.data.db.model.ProductView;
+import com.example.inventoryfragmentcontentprovider.data.model.ProductView;
 import com.example.inventoryfragmentcontentprovider.ui.product.contract.ContractProductDetails;
 import com.example.inventoryfragmentcontentprovider.ui.product.interactor.ProductDetailsInteractor;
 import com.example.inventoryfragmentcontentprovider.ui.product.interactor.ProductDetailsInteractorImpl;

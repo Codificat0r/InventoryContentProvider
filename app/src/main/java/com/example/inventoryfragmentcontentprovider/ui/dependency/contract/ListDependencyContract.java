@@ -3,7 +3,7 @@ package com.example.inventoryfragmentcontentprovider.ui.dependency.contract;
 import android.view.ActionMode;
 
 import com.example.inventoryfragmentcontentprovider.adapter.DependencyAdapter;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
 import com.example.inventoryfragmentcontentprovider.ui.base.BasePresenter;
 import com.example.inventoryfragmentcontentprovider.ui.base.BaseView;
 

@@ -1,7 +1,8 @@
-package com.example.inventoryfragmentcontentprovider.data.db.repository;
+package com.example.inventoryfragmentcontentprovider.data.repository;
 
-import com.example.inventoryfragmentcontentprovider.data.db.dao.SectorDao;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
+import com.example.inventoryfragmentcontentprovider.data.base.SectorDao;
+import com.example.inventoryfragmentcontentprovider.data.model.Sector;
+import com.example.inventoryfragmentcontentprovider.data.provider.dao.SectorDaoImpl;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class SectorRepository {
     }
 
     public SectorRepository() {
-        this.sectorDao = new SectorDao();
+        this.sectorDao = new SectorDaoImpl();
     }
 
     public void addSector (Sector sector) {

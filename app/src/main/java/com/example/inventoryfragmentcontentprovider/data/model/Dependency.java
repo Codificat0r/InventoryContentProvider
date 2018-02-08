@@ -1,4 +1,4 @@
-package com.example.inventoryfragmentcontentprovider.data.db.model;
+package com.example.inventoryfragmentcontentprovider.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

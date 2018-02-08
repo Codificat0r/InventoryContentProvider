@@ -3,11 +3,10 @@ package com.example.inventoryfragmentcontentprovider.ui.dependency.Interactor;
 import android.os.AsyncTask;
 
 import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;
-import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
-import com.example.inventoryfragmentcontentprovider.data.db.repository.DependencyRepository;
+import com.example.inventoryfragmentcontentprovider.data.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.repository.DependencyRepository;
 import com.example.inventoryfragmentcontentprovider.ui.dependency.ListDependencyInteractor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
