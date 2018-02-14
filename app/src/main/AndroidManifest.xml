@@ -15,7 +15,9 @@
             android:theme="@style/LoginTheme" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".ui.inventory.InventoryActivity" />
-        <activity android:name=".DashboardActivity" />
+        <activity android:name=".DashboardActivity" >
+
+        </activity>
         <activity android:name=".ui.product.vista.ProductDetailsActivity" />
         <activity android:name=".ui.dependency.DependencyActivity" >
 
